@@ -1,0 +1,20 @@
+{
+    "name": "eipdev/gallery",
+    "description": "EipDev Gallery",
+    "type": "project",
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2-app-advanced": "*",
+        "yiisoft/yii2-bootstrap": "*"
+    },
+    "require-dev": {
+        "yiisoft/yii2-codeception": "*",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-faker": "*"
+    },
+    "config": {
+        "process-timeout": 1800
+    }
+}
