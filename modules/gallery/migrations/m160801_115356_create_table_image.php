@@ -11,7 +11,7 @@ class m160801_115356_create_table_image extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('gallery_images', [
+        $this->createTable('gallery_image', [
             'id' => 'pk',
             'path' => 'text NOT NULL DEFAULT ""',
             'description' => 'text NOT NULL DEFAULT ""',
@@ -20,12 +20,12 @@ class m160801_115356_create_table_image extends Migration
             'updated_date' => 'timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP'
         ], $tableOptions);
 
-        $this->createIndex('idx-gallery_images-user_id', 'gallery_images', 'user_id');
+        $this->createIndex('idx-gallery_image-user_id', 'gallery_image', 'user_id');
     }
 
     public function safeDown()
     {
-        $this->dropTable('gallery_images');
+        $this->dropTable('gallery_image');
 
         return true;
     }

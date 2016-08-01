@@ -21,7 +21,7 @@ class m160801_120145_create_table_gallery_rating extends Migration
         $this->createIndex('idx-gallery_rating-user_id', 'gallery_rating', 'user_id');
         $this->createIndex('idx-gallery_rating-image_id', 'gallery_rating', 'image_id');
 
-        $this->addForeignKey('fk-gallery_rating-image_id', 'gallery_rating', 'image_id', 'gallery_images', 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('fk-gallery_rating-image_id', 'gallery_rating', 'image_id', 'gallery_image', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function safeDown()
