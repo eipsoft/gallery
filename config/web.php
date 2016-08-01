@@ -38,16 +38,27 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<gallery>' => 'gallery/default/index',
+                'gallery/<_c:[\w\-]+>' => 'gallery/<_c>/index',
+                'gallery/<_c:[\w\-]+>/<id:\d+>' => 'gallery/<_c>/view',
+                'gallery/<_c:[\w\-]+>/<_a:[\w\-]+>/<id:\d+>' => 'gallery/<_c>/<_a>',
+
+                '<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',
+                '<_c:[\w\-]+>' => '<_c>/index',
+                '<_c:[\w\-]+>/<_a:[\w\-]+>/<id:\d+>' => '<_c>/<_a>',
             ],
         ],
-        */
     ],
     'params' => $params,
+    'modules' => [
+        'gallery' => [
+            'class' => 'app\modules\gallery\Module',
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
