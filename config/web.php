@@ -42,6 +42,20 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                [
+                    'class' => 'yii\web\GroupUrlRule',
+                    'prefix' => 'admin',
+                    'routePrefix' => 'admin',
+                    'rules' => [
+                        '' => 'default/index',
+                        '<_m:[\w\-]+>' => '<_m>/default/index',
+                        '<_m:[\w\-]+>/<id:\d+>' => '<_m>/default/view',
+                        '<_m:[\w\-]+>/<id:\d+>/<_a:[\w-]+>' => '<_m>/default/<_a>',
+                        '<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>' => '<_m>/<_c>/view',
+                        '<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>/<_a:[\w\-]+>' => '<_m>/<_c>/<_a>',
+                        '<_m:[\w\-]+>/<_c:[\w\-]+>' => '<_m>/<_c>/index',
+                    ],
+                ],
                 '<gallery>' => 'gallery/default/index',
                 'gallery/<_c:[\w\-]+>' => 'gallery/<_c>/index',
                 'gallery/<_c:[\w\-]+>/<id:\d+>' => 'gallery/<_c>/view',
@@ -57,6 +71,16 @@ $config = [
     'modules' => [
         'gallery' => [
             'class' => 'app\modules\gallery\Module',
+        ],
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+            'modules' => [
+                'gallery' => [
+                    'class' => 'app\modules\gallery\Module',
+                    'controllerNamespace' => 'app\modules\gallery\controllers\backend',
+                    'viewPath' => '@app/modules/gallery/views/backend',
+                ],
+            ]
         ],
     ],
 ];

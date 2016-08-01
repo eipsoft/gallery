@@ -3,6 +3,7 @@
 namespace app\modules\gallery\controllers;
 
 use yii\web\Controller;
+use app\modules\gallery\models\Image;
 
 /**
  * Default controller for the `gallery` module
@@ -17,6 +18,7 @@ class DefaultController extends Controller
     {
         // \Yii::$app->db->createCommand('create table a(x int(11))')
         //    ->execute();
+        //print_r(Image::find()->all());
         return $this->render('index');
     }
 }
