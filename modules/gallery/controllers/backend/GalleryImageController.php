@@ -4,6 +4,7 @@ namespace app\modules\gallery\controllers\backend;
 
 use Yii;
 use app\modules\gallery\models\GalleryImage;
+use app\modules\gallery\models\User;
 use app\modules\gallery\models\GalleryImageSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -35,6 +36,7 @@ class GalleryImageController extends Controller
      */
     public function actionIndex()
     {
+        echo '<pre>';print_r(User::getAllUsers());die();
         $searchModel = new GalleryImageSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

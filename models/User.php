@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-class User extends \yii\base\Object implements \yii\web\IdentityInterface
+class User extends \yii\base\Object implements \yii\web\IdentityInterface, \app\modules\gallery\interfaces\GalleryUserInterface
 {
     public $id;
     public $username;
@@ -100,5 +100,10 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     public function validatePassword($password)
     {
         return $this->password === $password;
+    }
+
+    public function getAllUsers()
+    {
+        return array(1 => 'aa');
     }
 }
