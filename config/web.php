@@ -14,10 +14,10 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
-        ],
+        // 'user' => [
+        //     'identityClass' => 'app\models\User',
+        //     'enableAutoLogin' => true,
+        // ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -81,6 +81,15 @@ $config = [
                     'viewPath' => '@app/modules/gallery/views/backend',
                 ],
             ]
+        ],
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'admins' => ['admin', 'admin'],
+            'enableUnconfirmedLogin' => true,
+            'enableConfirmation' => false,
+            'modelMap' => [
+                'User' => 'app\models\User',
+            ],
         ],
     ],
 ];
