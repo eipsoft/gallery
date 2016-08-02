@@ -36,7 +36,6 @@ class GalleryImageController extends Controller
      */
     public function actionIndex()
     {
-        echo '<pre>';print_r(Yii::$app->user->identity->getAllUsers());die();
         $searchModel = new GalleryImageSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
