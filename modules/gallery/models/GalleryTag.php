@@ -3,6 +3,7 @@
 namespace app\modules\gallery\models;
 
 use Yii;
+use app\modules\gallery\models\GalleryImage;
 
 /**
  * This is the model class for table "gallery_tag".
@@ -12,6 +13,7 @@ use Yii;
  */
 class GalleryTag extends \yii\db\ActiveRecord
 {
+    const DELIMITER = ',';
     /**
      * @inheritdoc
      */
@@ -28,6 +30,7 @@ class GalleryTag extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['name'], 'string'],
+            [['name'], 'unique'],
         ];
     }
 
@@ -40,5 +43,29 @@ class GalleryTag extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
         ];
+    }
+
+    /**
+     * get list of all tags in system
+     * 
+     * @return array [['name' => tagName], ...]
+     */
+    public static function getAllTags()
+    {
+        $tags = static::find()
+            ->select('name')
+            ->asArray()
+            ->all();
+
+        return $tags;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getImages()
+    {
+        return $this->hasMany(GalleryImage::className(), ['id' => 'image_id'])
+        ->viaTable('gallery_image_tag', ['tag_id' => 'id']);
     }
 }

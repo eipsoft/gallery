@@ -72,7 +72,7 @@ $config = [
         'gallery' => [
             'class' => 'app\modules\gallery\Module',
             'userName' => 'username',
-            'userClass' => 'app\models\User',
+            'userClass' => '\dektrium\user\models\User',
         ],
         'admin' => [
             'class' => 'app\modules\admin\Module',
@@ -82,7 +82,7 @@ $config = [
                     'controllerNamespace' => 'app\modules\gallery\controllers\backend',
                     'viewPath' => '@app/modules/gallery/views/backend',
                     'userName' => 'username',
-                    'userClass' => 'app\models\User',
+                    'userClass' => '\dektrium\user\models\User',
                 ],
             ]
         ],
@@ -92,7 +92,7 @@ $config = [
             'enableUnconfirmedLogin' => true,
             'enableConfirmation' => false,
             'modelMap' => [
-                'User' => 'app\models\User',
+                'User' => '\dektrium\user\models\User',
             ],
         ],
     ],

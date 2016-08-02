@@ -14,13 +14,14 @@ class m160801_122021_create_table_gallery_image_tag extends Migration
         $this->createTable('gallery_image_tag', [
             'id' => 'pk',
             'image_id' => 'integer',
-            'user_id' => 'integer'
+            'tag_id' => 'integer'
         ], $tableOptions);
 
-        $this->createIndex('idx-gallery_image_tag-user_id', 'gallery_image_tag', 'user_id');
+        $this->createIndex('idx-gallery_image_tag-tag_id', 'gallery_image_tag', 'tag_id');
         $this->createIndex('idx-gallery_image_tag-image_id', 'gallery_image_tag', 'image_id');
 
         $this->addForeignKey('fk-gallery_image_tag-image_id', 'gallery_image_tag', 'image_id', 'gallery_image', 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('fk-gallery_image_tag-tag_id', 'gallery_image_tag', 'tag_id', 'gallery_tag', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function safeDown()

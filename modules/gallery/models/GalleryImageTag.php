@@ -9,7 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property integer $image_id
- * @property integer $user_id
+ * @property integer $tag_id
  *
  * @property GalleryImage $image
  */
@@ -29,7 +29,7 @@ class GalleryImageTag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['image_id', 'user_id'], 'integer'],
+            [['image_id', 'tag_id'], 'integer'],
             [['image_id'], 'exist', 'skipOnError' => true, 'targetClass' => GalleryImage::className(), 'targetAttribute' => ['image_id' => 'id']],
         ];
     }
@@ -42,7 +42,7 @@ class GalleryImageTag extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'image_id' => 'Image ID',
-            'user_id' => 'User ID',
+            'tag_id' => 'Tag ID',
         ];
     }
 

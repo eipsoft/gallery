@@ -9,6 +9,7 @@ use yii\widgets\Pjax;
 
 $this->title = 'Gallery Images';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="gallery-image-index">
 
@@ -27,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'path:ntext',
             'description:ntext',
-            'user.username',
+            'authorName',
             'created_date',
             // 'updated_date',
 

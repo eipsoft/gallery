@@ -67,10 +67,11 @@ class GalleryImageController extends Controller
         $model = new GalleryImage();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->addTags(Yii::$app->request->post('tags'));           
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $className = $this->module->userClass;
-            $users = $className::getAllUsers();
+            $users = User::getAllUsers();
             return $this->render('create', [
                 'model' => $model,
                 'users' => $users,
@@ -89,13 +90,16 @@ class GalleryImageController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->addTags(Yii::$app->request->post('tags'));
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $className = $this->module->userClass;
-            $users = $className::getAllUsers();
+            $users = User::getAllUsers();
+            $tags = $model->getTagsForWidget();
             return $this->render('update', [
                 'model' => $model,
                 'users' => $users,
+                'tags' => $tags,
             ]);
         }
     }

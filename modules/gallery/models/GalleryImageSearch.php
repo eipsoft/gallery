@@ -13,12 +13,17 @@ use app\modules\gallery\models\GalleryImage;
 class GalleryImageSearch extends GalleryImage
 {
     /**
+     * @var string username for search
+     */
+    public $authorName;
+    /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
             [['id', 'user_id'], 'integer'],
+            [['authorName'], 'safe'],
             [['path', 'description', 'created_date', 'updated_date'], 'safe'],
         ];
     }
@@ -49,6 +54,24 @@ class GalleryImageSearch extends GalleryImage
             'query' => $query,
         ]);
 
+        $userClass = \app\modules\gallery\Module::getInstance()->userClass;
+        $userName = \app\modules\gallery\Module::getInstance()->userName;
+        $tableName = $userClass::tableName();
+
+        $dataProvider->setSort([
+            'attributes' => [
+                'id',
+                'path',
+                'description',
+                'authorName' => [
+                    'asc' => [$tableName . '.' . $userName => SORT_ASC],
+                    'desc' => [$tableName . '.' . $userName => SORT_DESC],
+                    'label' => 'Author'
+                ],
+                'created_date',
+            ]
+        ]);
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -67,6 +90,10 @@ class GalleryImageSearch extends GalleryImage
 
         $query->andFilterWhere(['like', 'path', $this->path])
             ->andFilterWhere(['like', 'description', $this->description]);
+
+        $query->joinWith(['author' => function ($q) use($tableName, $userName) {
+            $q->where('LOWER(' . $tableName . '.' . $userName . ') LIKE "%' . strtolower($this->authorName) . '%"');
+        }]);
 
         return $dataProvider;
     }

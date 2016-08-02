@@ -3,6 +3,8 @@
 namespace app\modules\gallery\models;
 
 use Yii;
+use app\modules\gallery\models\GalleryTag;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "gallery_image".
@@ -19,16 +21,16 @@ use Yii;
  */
 class GalleryImage extends \yii\db\ActiveRecord
 {
-    public function getUser()
+    public function getAuthor()
     {
         $userClass = \app\modules\gallery\Module::getInstance()->userClass;
         return $this->hasOne($userClass, ['id' => 'user_id']);        
     }
 
 
-    public function getAuthor() {
+    public function getAuthorName() {
         $userName = \app\modules\gallery\Module::getInstance()->userName;
-        return $this->user ? $this->user->{$userName} : '';
+        return $this->author ? $this->author->{$userName} : '';
     }
     /**
      * @inheritdoc
@@ -68,11 +70,53 @@ class GalleryImage extends \yii\db\ActiveRecord
     }
 
     /**
+     * add tags to image
+     * 
+     * @param string $tags string with tags, separated by GalleryTag::DELIMITER
+     * @return void
+     */
+    public function addTags($tags)
+    {
+        $this->unlinkAll('tags', true);
+        $tags = array_map(
+            function ($val) use($tags) {
+                return trim($val);
+            },
+            explode(',', $tags)
+        );
+        $tags = array_filter($tags);
+        if (!empty($tags)) {
+            foreach ($tags as $name) {
+                $tag = GalleryTag::find()->where(['name' => $name])->one();
+                if (!$tag) {
+                    $tag = new GalleryTag();
+                    $tag->name = $name;
+                    $tag->save();
+                }
+                $this->link('tags', $tag);
+            }
+        }
+    }
+
+    /**
+     * return tags of current image model
+     * 
+     * @return string tags of current image, separated by GalleryTag::DELIMITER
+     */
+    public function getTagsForWidget()
+    {
+        return implode(GalleryTag::DELIMITER, array_map(function($item) {
+            return trim(Html::encode($item->name));
+        }, $this->tags));
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
-    public function getGalleryImageTags()
+    public function getTags()
     {
-        return $this->hasMany(GalleryImageTag::className(), ['image_id' => 'id']);
+        return $this->hasMany(GalleryTag::className(), ['id' => 'tag_id'])
+        ->viaTable('gallery_image_tag', ['image_id' => 'id']);
     }
 
     /**
