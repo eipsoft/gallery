@@ -13,6 +13,16 @@ class Module extends \yii\base\Module
     public $controllerNamespace = 'app\modules\gallery\controllers';
 
     /**
+     * @var string name of username property in User model
+     */
+    public $userName;
+
+    /**
+     * @var string User model class
+     */
+    public $userClass;
+
+    /**
      * @inheritdoc
      */
     public function init()

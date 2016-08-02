@@ -71,6 +71,8 @@ $config = [
     'modules' => [
         'gallery' => [
             'class' => 'app\modules\gallery\Module',
+            'userName' => 'username',
+            'userClass' => 'app\models\User',
         ],
         'admin' => [
             'class' => 'app\modules\admin\Module',
@@ -79,12 +81,14 @@ $config = [
                     'class' => 'app\modules\gallery\Module',
                     'controllerNamespace' => 'app\modules\gallery\controllers\backend',
                     'viewPath' => '@app/modules/gallery/views/backend',
+                    'userName' => 'username',
+                    'userClass' => 'app\models\User',
                 ],
             ]
         ],
         'user' => [
             'class' => 'dektrium\user\Module',
-            'admins' => ['admin', 'admin'],
+            'admins' => ['admin'],
             'enableUnconfirmedLogin' => true,
             'enableConfirmation' => false,
             'modelMap' => [

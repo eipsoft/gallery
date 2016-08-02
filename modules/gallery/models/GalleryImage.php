@@ -19,6 +19,17 @@ use Yii;
  */
 class GalleryImage extends \yii\db\ActiveRecord
 {
+    public function getUser()
+    {
+        $userClass = \app\modules\gallery\Module::getInstance()->userClass;
+        return $this->hasOne($userClass, ['id' => 'user_id']);        
+    }
+
+
+    public function getAuthor() {
+        $userName = \app\modules\gallery\Module::getInstance()->userName;
+        return $this->user ? $this->user->{$userName} : '';
+    }
     /**
      * @inheritdoc
      */
@@ -52,6 +63,7 @@ class GalleryImage extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'created_date' => 'Created Date',
             'updated_date' => 'Updated Date',
+            'author' => 'Author',
         ];
     }
 

@@ -2,6 +2,7 @@
     
 namespace app\modules\gallery\behaviors;
 
+use Yii;
 use yii\base\Behavior;
 use yii\helpers\ArrayHelper;
 
@@ -25,12 +26,33 @@ class GalleryUserBehavior extends Behavior
      */
     public function getAllUsers()
     {
-        $userClass = get_class($this->owner);
+        $userClass = $this->owner->modelClass;
         $users = $userClass::find()
             ->select(['id', $this->userName])
             ->asArray()
             ->all();
         $users = ArrayHelper::map($users, 'id', $this->userName);
         return $users;
-    }  
+    }
+
+    /**
+     * get username by id
+     * 
+     * @param integer $id user id
+     * @return string username
+     */
+    public function getUsernameById($id)
+    {
+        $userClass = $this->owner->modelClass;
+        $user = $userClass::find()
+            ->select([$this->userName])
+            ->where(['id' => $id])
+            ->asArray()
+            ->one();
+        if ($user) {
+            return $user[$this->userName];
+        }
+        
+        return '';
+    }
 }

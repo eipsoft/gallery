@@ -69,8 +69,11 @@ class GalleryImageController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $className = $this->module->userClass;
+            $users = $className::getAllUsers();
             return $this->render('create', [
                 'model' => $model,
+                'users' => $users,
             ]);
         }
     }
@@ -88,8 +91,11 @@ class GalleryImageController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $className = $this->module->userClass;
+            $users = $className::getAllUsers();
             return $this->render('update', [
                 'model' => $model,
+                'users' => $users,
             ]);
         }
     }
