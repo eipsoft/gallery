@@ -9,7 +9,10 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-jui": "*",
         "dektrium/yii2-user": "0.9.*@dev",
-        "2amigos/yii2-selectize-widget": "~1.0"
+        "2amigos/yii2-selectize-widget": "~1.0",
+        "kartik-v/yii2-grid": "@dev",
+        "kartik-v/yii2-krajee-base": "@dev",
+        "kartik-v/yii2-mpdf": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
