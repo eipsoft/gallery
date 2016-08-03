@@ -63,14 +63,11 @@ class GalleryTagController extends Controller
      */
     public function actionCreate()
     {
-        $model = new GalleryTag();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->post('tags')) {
+            GalleryTag::addMultiTags(Yii::$app->request->post('tags'));
+            return $this->redirect('index');
         } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            return $this->render('create');
         }
     }
 

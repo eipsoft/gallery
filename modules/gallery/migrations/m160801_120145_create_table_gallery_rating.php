@@ -15,7 +15,7 @@ class m160801_120145_create_table_gallery_rating extends Migration
             'id' => 'pk',
             'user_id' => 'integer',
             'image_id' => 'integer',
-            'value' => 'integer'
+            'value' => 'float(5, 2)'
         ], $tableOptions);
 
         $this->createIndex('idx-gallery_rating-user_id', 'gallery_rating', 'user_id');

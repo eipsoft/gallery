@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'type'=>'success',
             'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Create Gallery Image', ['create'], ['class' => 'btn btn-success']),
             'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
-            'footer'=>false
+            //'footer'=>false
         ],
         'export' => false,
         'bordered' => true,

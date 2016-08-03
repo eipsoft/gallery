@@ -68,4 +68,28 @@ class GalleryTag extends \yii\db\ActiveRecord
         return $this->hasMany(GalleryImage::className(), ['id' => 'image_id'])
         ->viaTable('gallery_image_tag', ['tag_id' => 'id']);
     }
+
+    /**
+     * add new tags to the gallery
+     * 
+     * @param string $tags string with tags, separated by GalleryTag::DELIMITER
+     * @return void
+     */
+    public static function addMultiTags($tags)
+    {
+        $tags = array_map(
+            function ($val) use($tags) {
+                return trim($val);
+            },
+            explode(static::DELIMITER, $tags)
+        );
+        $tags = array_filter($tags);
+        if (!empty($tags)) {
+            foreach ($tags as $name) {
+                $tag = new GalleryTag();
+                $tag->name = $name;
+                $tag->save();
+            }
+        }
+    }
 }

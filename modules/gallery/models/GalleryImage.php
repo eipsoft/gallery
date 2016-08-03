@@ -21,13 +21,11 @@ use yii\helpers\Html;
  */
 class GalleryImage extends \yii\db\ActiveRecord
 {
-    public function getAuthor()
-    {
-        $userClass = \app\modules\gallery\Module::getInstance()->userClass;
-        return $this->hasOne($userClass, ['id' => 'user_id']);        
-    }
-
-
+    /**
+     * return username of user who added image
+     * 
+     * @return string username - creator of the image
+     */
     public function getAuthorName() {
         $userName = \app\modules\gallery\Module::getInstance()->userName;
         return $this->author ? $this->author->{$userName} : '';
@@ -82,7 +80,7 @@ class GalleryImage extends \yii\db\ActiveRecord
             function ($val) use($tags) {
                 return trim($val);
             },
-            explode(',', $tags)
+            explode(GalleryTag::DELIMITER, $tags)
         );
         $tags = array_filter($tags);
         if (!empty($tags)) {
@@ -125,5 +123,14 @@ class GalleryImage extends \yii\db\ActiveRecord
     public function getGalleryRatings()
     {
         return $this->hasMany(GalleryRating::className(), ['image_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAuthor()
+    {
+        $userClass = \app\modules\gallery\Module::getInstance()->userClass;
+        return $this->hasOne($userClass, ['id' => 'user_id']);        
     }
 }
