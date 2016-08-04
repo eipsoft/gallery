@@ -23,6 +23,21 @@ class Module extends \yii\base\Module
     public $userClass;
 
     /**
+     * @var string name of directory in @webroot for images
+     */
+    public $folder = 'gallery_images';
+
+    /**
+     * @var integer
+     */
+    public $thumbnailWidth = 200;
+
+    /**
+     * @var string name of directory in @webroot for images
+     */
+    public $thumbnailHeight = 200;
+
+    /**
      * @inheritdoc
      */
     public function init()

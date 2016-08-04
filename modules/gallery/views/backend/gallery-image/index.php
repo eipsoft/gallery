@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
+use himiklab\thumbnail\EasyThumbnailImage;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\gallery\models\GalleryImageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -10,7 +11,10 @@ use yii\widgets\Pjax;
 $this->title = 'Gallery Images';
 $this->params['breadcrumbs'][] = $this->title;
 
+$thumbnailWidth = $this->context->module->thumbnailWidth;
+$thumbnailHeight = $this->context->module->thumbnailHeight;
 ?>
+
 <div class="gallery-image-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -23,7 +27,22 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'path:ntext',
+            [
+                'attribute' => 'path',
+                'format' => 'raw',
+                'value' => function($data) use ($thumbnailWidth, $thumbnailHeight){
+                    // return EasyThumbnailImage::thumbnailImg(
+                    //     Yii::getAlias('@webroot') . $data->path,
+                    //     $thumbnailWidth,
+                    //     $thumbnailHeight,
+                    //     EasyThumbnailImage::THUMBNAIL_OUTBOUND,
+                    //     ['alt' => $data->description]
+                    // );
+                    // Image::thumbnail(Yii::getAlias('@webroot') . $data->path, 120, 120)
+                    //     ->save(Yii::getAlias('@runtime/thumb-test-photo.jpg'), ['quality' => 80]);
+                },
+                'filter' => false
+            ],
             'description:ntext',
             'authorName',
             'created_date',

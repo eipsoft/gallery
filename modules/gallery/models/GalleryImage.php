@@ -22,6 +22,10 @@ use yii\helpers\Html;
 class GalleryImage extends \yii\db\ActiveRecord
 {
     /**
+     * @var UploadedFile
+     */
+    public $upload_image;
+    /**
      * return username of user who added image
      * 
      * @return string username - creator of the image
@@ -45,6 +49,7 @@ class GalleryImage extends \yii\db\ActiveRecord
     {
         return [
             [['path', 'description'], 'required'],
+            [['upload_image'], 'file', 'extensions' => 'png, jpg, gif, jpeg', 'skipOnEmpty' => true],
             [['path', 'description'], 'string'],
             [['user_id'], 'integer'],
             [['created_date', 'updated_date'], 'safe'],
@@ -106,6 +111,18 @@ class GalleryImage extends \yii\db\ActiveRecord
         return implode(GalleryTag::DELIMITER, array_map(function($item) {
             return trim(Html::encode($item->name));
         }, $this->tags));
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeDelete()
+    {
+        $webrootDir = Yii::getAlias('@webroot');
+        if (file_exists($webrootDir . $this->path)) {
+            @unlink($webrootDir . $this->path);
+        }
+        return parent::beforeDelete();
     }
 
     /**

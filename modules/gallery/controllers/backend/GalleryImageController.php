@@ -6,6 +6,7 @@ use Yii;
 use app\modules\gallery\models\GalleryImage;
 use app\modules\gallery\models\User;
 use app\modules\gallery\models\GalleryImageSearch;
+use app\modules\gallery\libraries\UploadHandler;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -66,17 +67,44 @@ class GalleryImageController extends Controller
     {
         $model = new GalleryImage();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->addTags(Yii::$app->request->post('tags'));           
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            $className = $this->module->userClass;
-            $users = User::getAllUsers();
-            return $this->render('create', [
-                'model' => $model,
-                'users' => $users,
-            ]);
+        $model->load(Yii::$app->request->post());
+        $galleryFolderName = $this->module->folder;
+        $subFolderName = 'user' . $model->user_id;
+        $folderPath = "/{$galleryFolderName}/{$subFolderName}/";
+
+        if(Yii::$app->request->isPost){
+            //Try to get file info
+            $upload_image = \yii\web\UploadedFile::getInstance($model, 'upload_image');
+
+            //If received, then I get the file name and asign it to $model->image in order to store it in db
+            if(!empty($upload_image)){
+                $image_name = Yii::$app->security->generateRandomString() . '.' . $upload_image->extension;
+                $model->path = $folderPath . $image_name;
+            }
+
+            //I proceed to validate model. Notice that will validate that 'image' is required and also 'image_upload' as file, but this last is optional
+            if ($model->validate() && $model->save()) {
+
+                //If all went OK, then proceed to save the image in filesystem
+                $webrootDir = Yii::getAlias('@webroot');
+                if (!is_dir($webrootDir . $folderPath)) {
+                    mkdir($webrootDir . $folderPath, 0755, true);
+                }
+                if(!empty($upload_image)){
+                    $upload_image->saveAs($webrootDir . $folderPath . '/' . $image_name);
+                }              
+
+                $model->addTags(Yii::$app->request->post('tags'));
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
+
+        $className = $this->module->userClass;
+        $users = User::getAllUsers();
+        return $this->render('create', [
+            'model' => $model,
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -88,20 +116,53 @@ class GalleryImageController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $oldImage = $model->path;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->addTags(Yii::$app->request->post('tags'));
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            $className = $this->module->userClass;
-            $users = User::getAllUsers();
-            $tags = $model->getTagsForWidget();
-            return $this->render('update', [
-                'model' => $model,
-                'users' => $users,
-                'tags' => $tags,
-            ]);
+        $model->load(Yii::$app->request->post());
+
+        $galleryFolderName = $this->module->folder;
+        $subFolderName = 'user' . $model->user_id;
+        $folderPath = "/{$galleryFolderName}/{$subFolderName}/";
+
+        if(Yii::$app->request->isPost){
+            $fileParamName = 'GalleryImage';
+            //if (isset($_FILES[]))
+            //Try to get file info
+            $upload_image = \yii\web\UploadedFile::getInstance($model, 'upload_image');
+
+            //If received, then I get the file name and asign it to $model->image in order to store it in db
+            if(!empty($upload_image)){
+                $image_name = Yii::$app->security->generateRandomString() . '.' . $upload_image->extension;
+                $model->path = $folderPath . $image_name;
+            }
+
+            //I proceed to validate model. Notice that will validate that 'image' is required and also 'image_upload' as file, but this last is optional
+            if ($model->validate() && $model->save()) {
+
+                //If all went OK, then proceed to save the image in filesystem
+                $webrootDir = Yii::getAlias('@webroot');
+                if (!is_dir($webrootDir . $folderPath)) {
+                    mkdir($webrootDir . $folderPath, 0755, true);
+                }
+                if(!empty($upload_image)){
+                    $upload_image->saveAs($webrootDir . $folderPath . '/' . $image_name);
+                }
+                if ($oldImage != $model->path) {
+                    @unlink($webrootDir . $oldImage);
+                }                
+
+                $model->addTags(Yii::$app->request->post('tags'));
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
+        $className = $this->module->userClass;
+        $users = User::getAllUsers();
+        $tags = $model->getTagsForWidget();
+        return $this->render('update', [
+            'model' => $model,
+            'users' => $users,
+            'tags' => $tags,            
+        ]);
     }
 
     /**
