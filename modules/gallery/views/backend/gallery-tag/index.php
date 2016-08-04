@@ -15,13 +15,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+<?php //Pjax::begin(); ?>    <?= GridView::widget([
+        'id' => 'gallery-images-gridview', 
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'pjax' => true,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'name',
+                //'pageSummary' => 'Page Total',
+                'vAlign'=>'middle',
+                'headerOptions'=>['class'=>'kv-sticky-column'],
+                'contentOptions'=>['class'=>'kv-sticky-column'],
+                'editableOptions'=>['header'=>'Name', 'size'=>'md']
 
-            'name:ntext',
+            ],
+            //'name:ntext',
 
             [
                 'class' => 'yii\grid\ActionColumn',
@@ -43,4 +54,4 @@ $this->params['breadcrumbs'][] = $this->title;
         'hover' => true,
         'floatHeader' => true,
     ]); ?>
-<?php Pjax::end(); ?></div>
+<?php //Pjax::end(); ?></div>

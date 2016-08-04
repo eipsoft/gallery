@@ -5,6 +5,7 @@ use kartik\grid\GridView;
 use yii\widgets\Pjax;
 use app\modules\gallery\assets\FullsizibleAsset;
 use app\modules\gallery\assets\AdminAsset;
+use app\modules\gallery\widgets\backend\StarRatingAjax;
 use himiklab\thumbnail\EasyThumbnailImage;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\gallery\models\GalleryImageSearch */
@@ -20,7 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+<?php Pjax::begin(); ?>    
+<?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -60,7 +62,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'filter' => false,
             ],
-            'created_date',
+            [
+                'attribute' => 'created_date',
+                //'filterType' => GridView::FILTER_DATE,
+            ],
+            [
+                'attribute' => 'averageRating',
+                'format' => 'raw',
+                'value' => function($data){
+                    return StarRatingAjax::widget([
+                        'value' => $data->averageRating,
+                        'showClear' => false,
+                        'readOnly' => true,
+                        'disabled' => true
+                    ]);
+                },
+                'filter' => false,
+            ],
 
             [
                 'class' => 'yii\grid\ActionColumn',

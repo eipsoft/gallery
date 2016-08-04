@@ -42,6 +42,11 @@ class StarRatingAjax extends Widget
     /**
      * @var bool
      */
+    public $disabled = false;
+
+    /**
+     * @var bool
+     */
     public $showClear = true;
 
     /**
@@ -72,6 +77,7 @@ class StarRatingAjax extends Widget
         $widgetOptions = [];
         $widgetOptions['name'] = 'star_rating';
         $widgetOptions['value'] = $this->value;
+        $widgetOptions['disabled'] = $this->disabled;
         $widgetOptions['pluginOptions'] = [
             'size' => $this->size,
             'step' => $this->step,

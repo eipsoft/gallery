@@ -8,6 +8,7 @@ use app\modules\gallery\models\GalleryTagSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
 
 /**
  * GalleryTagController implements the CRUD actions for GalleryTag model.
@@ -37,6 +38,39 @@ class GalleryTagController extends Controller
     {
         $searchModel = new GalleryTagSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        // validate if there is a editable input saved via AJAX
+        if (Yii::$app->request->post('hasEditable')) {
+            // instantiate your book model for saving
+            $tagId = Yii::$app->request->post('editableKey');
+            $model = GalleryTag::findOne($tagId);
+
+            // store a default json response as desired by editable
+            $out = Json::encode(['output'=>'', 'message'=>'']);
+
+            $tag = current($_POST['GalleryTag']);
+            $post = ['GalleryTag' => $tag];
+
+            // load model like any single model validation
+            if ($model->load($post)) {
+                // can save model or do something before saving model
+                if (!$model->save()) {
+                    if (!empty($model->errors)) {
+                        //get only first error and then break
+                        foreach ($model->errors as $arError) {
+                            $error = $arError[0];
+                            $out = Json::encode(['output' => '', 'message' => $error]);
+                            break;
+                        }
+                    }
+                }
+
+               
+            }
+            // return ajax json encoded response and exit
+            echo $out;
+            return;
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,

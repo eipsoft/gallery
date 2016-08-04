@@ -26,15 +26,7 @@ class GalleryImage extends \yii\db\ActiveRecord
      * @var UploadedFile
      */
     public $upload_image;
-    /**
-     * return username of user who added image
-     * 
-     * @return string username - creator of the image
-     */
-    public function getAuthorName() {
-        $userName = \app\modules\gallery\Module::getInstance()->userName;
-        return $this->author ? $this->author->{$userName} : '';
-    }
+    
     /**
      * @inheritdoc
      */
@@ -72,6 +64,15 @@ class GalleryImage extends \yii\db\ActiveRecord
             'updated_date' => 'Updated Date',
             'author' => 'Author',
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeDelete()
+    {
+        $this->deleteImagePhysically();
+        return parent::beforeDelete();
     }
 
     /**
@@ -162,6 +163,22 @@ class GalleryImage extends \yii\db\ActiveRecord
     }
 
     /**
+     * get averate rating from all users
+     * 
+     * @return double
+     */
+    public function getAverageRating() {
+        $avRating = 0;
+        if (!empty($this->galleryRatings)) {
+            foreach ($this->galleryRatings as $rating) {
+                $avRating += $rating->value;
+            }
+            $avRating = round($avRating / count($this->galleryRatings), 2);
+        }
+        return $avRating;
+    }
+
+    /**
      * return tags of current image model
      * 
      * @return string tags of current image, separated by GalleryTag::DELIMITER
@@ -174,12 +191,13 @@ class GalleryImage extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * return username of user who added image
+     * 
+     * @return string username - creator of the image
      */
-    public function beforeDelete()
-    {
-        $this->deleteImagePhysically();
-        return parent::beforeDelete();
+    public function getAuthorName() {
+        $userName = \app\modules\gallery\Module::getInstance()->userName;
+        return $this->author ? $this->author->{$userName} : '';
     }
 
     /**

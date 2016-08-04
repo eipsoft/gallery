@@ -69,6 +69,7 @@ class GalleryImageSearch extends GalleryImage
                     'label' => 'Author'
                 ],
                 'created_date',
+                //'averageRating'
             ]
         ]);
 

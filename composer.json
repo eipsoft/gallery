@@ -15,7 +15,7 @@
         "kartik-v/yii2-mpdf": "@dev",
         "kartik-v/yii2-widget-rating": "*",
         "kartik-v/yii2-widget-fileinput": "@dev",
-        "yiisoft/yii2-imagine": "~2.0.0"
+        "kartik-v/yii2-editable": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

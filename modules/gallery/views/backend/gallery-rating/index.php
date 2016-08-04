@@ -34,7 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'authorName',
-            'image.path',
+            [
+                'format' => 'raw',
+                'value' => function($data){
+                    return Html::img($data->image->thumbnail);
+                },
+                'filter' => false,
+            ],
             [
                 'class' => 'app\modules\gallery\widgets\backend\grid\RatingColumn',
                 'attribute' => 'value',
