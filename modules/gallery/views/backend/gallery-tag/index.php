@@ -23,7 +23,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'name:ntext',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{update}{delete}'
+            ],
         ],
         'panel' => [
             'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-globe"></i> ' . Html::encode($this->title) . '</h3>',

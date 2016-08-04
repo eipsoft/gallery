@@ -4,10 +4,12 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use dosamigos\selectize\SelectizeTextInput;
 use app\modules\gallery\assets\TagAsset;
+use app\modules\gallery\assets\AdminAsset;
 use app\modules\gallery\models\GalleryTag;
 use kartik\file\FileInput;
 
 TagAsset::register($this);
+AdminAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\gallery\models\GalleryImage */
@@ -20,17 +22,20 @@ TagAsset::register($this);
         'options' => ['enctype'=>'multipart/form-data']
     ]); ?>
 
-    <?= $form->field($model, 'upload_image')->widget(FileInput::classname(), [
-        'options' => ['accept' => 'image/*'],
-        'pluginOptions' => [
-            'allowedExtensions' => ['jpg','gif','png', 'jpeg'],
-            //'showUpload' => false,
-            'initialPreview'=>[
-                $model->path ? Html::img($model->path) : null
-            ],
-            'overwriteInitial'=>true
-        ]
-    ]); ?>
+    <?= 
+        $form->field($model, 'upload_image')->widget(FileInput::classname(), [
+            'options' => ['accept' => 'image/*'],
+            'pluginOptions' => [
+                'allowedExtensions' => ['jpg','gif','png','jpeg'],
+                //'showUpload' => false,
+                'initialPreview'=>[
+                    $model->path ? Html::img($model->path) : null
+                ],
+                'overwriteInitial'=>true,
+                'showUpload' => false,
+            ]
+        ]); 
+    ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 

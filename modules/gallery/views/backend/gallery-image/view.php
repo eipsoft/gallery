@@ -30,9 +30,28 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'path:ntext',
+            [
+                'attribute' => 'path',
+                'value' => call_user_func(function($data){
+                    return Html::img($data->thumbnail);
+                }, $model),
+                'format' => 'html',
+            ],
             'description:ntext',
             'authorName',
+            [
+                //'attribute' => 'path',
+                'label' => 'Tags',
+                'value' => call_user_func(function($data){
+                    $html = '';
+                    $i = 0;
+                    foreach ($data->tags as $tag) {
+                        $html .= '<span class="label label-success">' . $tag->name . '</span>&nbsp;';                        
+                    }
+                    return $html;
+                }, $model),
+                'format' => 'html',
+            ],
             'created_date',
             'updated_date',
         ],

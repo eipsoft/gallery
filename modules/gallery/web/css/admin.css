@@ -1,0 +1,8 @@
+.kv-file-content img:not(.file-preview-image) {
+    max-width: 1000px;
+    max-height: 800px;
+}
+
+#jquery-fullsizable {
+    z-index: 3000 !important;
+}

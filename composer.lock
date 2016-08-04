@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4b3c51c6270b9dfe256ab0d9b4ea23a1",
-    "content-hash": "11fb6a5fb168c54451284454b9a7afef",
+    "hash": "4fc05f3df4f0d540d690e07f48500e81",
+    "content-hash": "67a45df52c00f97762495f6ec963d206",
     "packages": [
         {
             "name": "2amigos/yii2-selectize-widget",
@@ -644,49 +644,6 @@
                 "html"
             ],
             "time": "2016-07-16 12:58:58"
-        },
-        {
-            "name": "himiklab/yii2-easy-thumbnail-image-helper",
-            "version": "1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/himiklab/yii2-easy-thumbnail-image-helper.git",
-                "reference": "c19f1297edd286584190457c8f20d34b28204270"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/himiklab/yii2-easy-thumbnail-image-helper/zipball/c19f1297edd286584190457c8f20d34b28204270",
-                "reference": "c19f1297edd286584190457c8f20d34b28204270",
-                "shasum": ""
-            },
-            "require": {
-                "yiisoft/yii2": "*",
-                "yiisoft/yii2-imagine": "*"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "himiklab\\thumbnail\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "HimikLab",
-                    "homepage": "https://github.com/himiklab/"
-                }
-            ],
-            "description": "Yii2 helper for creating and caching thumbnails on real time",
-            "keywords": [
-                "helper",
-                "image",
-                "thumbnail",
-                "yii2"
-            ],
-            "time": "2015-11-12 17:33:18"
         },
         {
             "name": "imagine/imagine",

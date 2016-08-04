@@ -4,6 +4,7 @@ namespace app\modules\gallery\models;
 
 use Yii;
 use app\modules\gallery\models\GalleryTag;
+use app\modules\gallery\libraries\UploadHandler;
 use yii\helpers\Html;
 
 /**
@@ -48,8 +49,9 @@ class GalleryImage extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['path', 'description'], 'required'],
+            [['description'], 'required'],
             [['upload_image'], 'file', 'extensions' => 'png, jpg, gif, jpeg', 'skipOnEmpty' => true],
+            [['upload_image'], 'required', 'on' => 'create'],
             [['path', 'description'], 'string'],
             [['user_id'], 'integer'],
             [['created_date', 'updated_date'], 'safe'],
@@ -102,6 +104,64 @@ class GalleryImage extends \yii\db\ActiveRecord
     }
 
     /**
+     * delete image and all its thumbnails from file system
+     * 
+     * @return void
+     */
+    public function deleteImagePhysically()
+    {
+        $webroot = Yii::getAlias('@webroot');
+        @unlink($webroot . $this->path);
+        $thumbnail = $this->thumbnail;
+        if ($thumbnail) {
+            unlink($webroot . $thumbnail);
+        }
+    }
+
+    /**
+     * 
+     * @return string thumbnail of the image or empty string if not exists
+     */
+    public function getThumbnail()
+    {
+        $pathToThumbnail = substr_replace($this->path, '/thumbnail/', strrpos($this->path, '/'), 1);
+        return file_exists(Yii::getAlias('@webroot') . $pathToThumbnail) ? $pathToThumbnail : '';
+    }
+
+    /**
+     * Upload image with helping of UploadHandler and set path 
+     * 
+     * @return void
+     */
+    public function uploadImage()
+    {
+        $galleryFolderName = \app\modules\gallery\Module::getInstance()->folder;
+        $subFolderName = 'user' . $this->user_id;
+        $folderPath = "/{$galleryFolderName}/{$subFolderName}/";
+
+        $uploadDir = Yii::getAlias('@webroot');
+        $uploadDir .= $folderPath;
+        $uploadUrl = UploadHandler::get_full_url_static() . "{$folderPath}";
+        $paramName = 'GalleryImage';
+        ob_start();
+        $uploadHandler = new UploadHandler([
+            'upload_dir' => $uploadDir,
+            'upload_url' => $uploadUrl,
+            'param_name' => $paramName
+        ]);
+        $uploadHandlerResponse = ob_get_contents();
+        ob_end_clean();
+        $uploadHandlerResponse = json_decode($uploadHandlerResponse, true);
+        if (isset($uploadHandlerResponse[$paramName])) {
+            $im = array_shift($uploadHandlerResponse[$paramName]);
+            if (!isset($im['error'])) {
+                $imName = $im['name'];
+                $this->path = $folderPath . $imName;
+            }
+        }
+    }
+
+    /**
      * return tags of current image model
      * 
      * @return string tags of current image, separated by GalleryTag::DELIMITER
@@ -118,10 +178,7 @@ class GalleryImage extends \yii\db\ActiveRecord
      */
     public function beforeDelete()
     {
-        $webrootDir = Yii::getAlias('@webroot');
-        if (file_exists($webrootDir . $this->path)) {
-            @unlink($webrootDir . $this->path);
-        }
+        $this->deleteImagePhysically();
         return parent::beforeDelete();
     }
 

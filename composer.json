@@ -29,6 +29,12 @@
     "scripts": {
         "post-create-project-cmd": [
             "yii\\composer\\Installer::postCreateProject"
+        ],
+        "post-install-cmd": [
+          "bower install --allow-root"
+        ],
+          "post-update-cmd": [
+          "bower install --allow-root"
         ]
     },
     "extra": {
