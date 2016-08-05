@@ -8,7 +8,7 @@ use app\modules\gallery\assets\AdminAsset;
 use app\modules\gallery\widgets\backend\StarRatingAjax;
 use himiklab\thumbnail\EasyThumbnailImage;
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\gallery\models\GalleryImageSearch */
+/* @var $searchModel app\modules\gallery\common\models\GalleryImageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 FullsizibleAsset::register($this);
 AdminAsset::register($this);

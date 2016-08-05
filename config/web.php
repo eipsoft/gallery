@@ -85,6 +85,8 @@ $config = [
             'class' => 'app\modules\gallery\Module',
             'userName' => 'username',
             'userClass' => '\dektrium\user\models\User',
+            'controllerNamespace' => 'app\modules\gallery\controllers\frontend',
+            'viewPath' => '@app/modules/gallery/views/frontend',
         ],
         'admin' => [
             'class' => 'app\modules\admin\Module',

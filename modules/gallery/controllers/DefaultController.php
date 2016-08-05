@@ -3,7 +3,7 @@
 namespace app\modules\gallery\controllers;
 
 use yii\web\Controller;
-use app\modules\gallery\models\Image;
+use app\modules\gallery\common\models\Image;
 
 /**
  * Default controller for the `gallery` module

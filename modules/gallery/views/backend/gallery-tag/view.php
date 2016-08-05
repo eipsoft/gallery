@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\gallery\models\GalleryTag */
+/* @var $model app\modules\gallery\common\models\GalleryTag */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Gallery Tags', 'url' => ['index']];

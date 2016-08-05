@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\gallery\models;
+namespace app\modules\gallery\common\models;
 
 use Yii;
 

@@ -2,21 +2,20 @@
 
 use yii\helpers\Html;
 
-
 /* @var $this yii\web\View */
 /* @var $model app\modules\gallery\common\models\GalleryImage */
 
-$this->title = 'Create Gallery Image';
+$this->title = 'Update Gallery Image: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Gallery Images', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="gallery-image-create">
+<div class="gallery-image-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
-        'users' => $users,
     ]) ?>
 
 </div>

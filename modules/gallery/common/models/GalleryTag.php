@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\gallery\models;
+namespace app\modules\gallery\common\models;
 
 use Yii;
-use app\modules\gallery\models\GalleryImage;
+use app\modules\gallery\common\models\GalleryImage;
 
 /**
  * This is the model class for table "gallery_tag".

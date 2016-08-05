@@ -6,7 +6,7 @@ use yii\widgets\Pjax;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\gallery\models\GalleryRatingSearch */
+/* @var $searchModel app\modules\gallery\common\models\GalleryRatingSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app/modules/gallery/messages', 'Gallery Ratings');

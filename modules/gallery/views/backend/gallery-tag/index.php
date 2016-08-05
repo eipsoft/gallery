@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\gallery\models\GalleryTagSearch */
+/* @var $searchModel app\modules\gallery\common\models\GalleryTagSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Gallery Tags';

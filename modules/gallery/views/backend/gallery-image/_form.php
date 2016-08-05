@@ -5,14 +5,14 @@ use yii\widgets\ActiveForm;
 use dosamigos\selectize\SelectizeTextInput;
 use app\modules\gallery\assets\TagAsset;
 use app\modules\gallery\assets\AdminAsset;
-use app\modules\gallery\models\GalleryTag;
+use app\modules\gallery\common\models\GalleryTag;
 use kartik\file\FileInput;
 
 TagAsset::register($this);
 AdminAsset::register($this);
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\gallery\models\GalleryImage */
+/* @var $model app\modules\gallery\common\models\GalleryImage */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

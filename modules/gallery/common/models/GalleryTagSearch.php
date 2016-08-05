@@ -1,16 +1,16 @@
 <?php
 
-namespace app\modules\gallery\models;
+namespace app\modules\gallery\common\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\gallery\models\GalleryRating;
+use app\modules\gallery\common\models\GalleryTag;
 
 /**
- * GalleryRatingSearch represents the model behind the search form about `app\modules\gallery\models\GalleryRating`.
+ * GalleryTagSearch represents the model behind the search form about `app\modules\gallery\common\models\GalleryTag`.
  */
-class GalleryRatingSearch extends GalleryRating
+class GalleryTagSearch extends GalleryTag
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class GalleryRatingSearch extends GalleryRating
     public function rules()
     {
         return [
-            [['id', 'user_id', 'image_id', 'value'], 'integer'],
+            [['id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class GalleryRatingSearch extends GalleryRating
      */
     public function search($params)
     {
-        $query = GalleryRating::find();
+        $query = GalleryTag::find();
 
         // add conditions that should always apply here
 
@@ -59,10 +60,9 @@ class GalleryRatingSearch extends GalleryRating
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
-            'image_id' => $this->image_id,
-            'value' => $this->value,
         ]);
+
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

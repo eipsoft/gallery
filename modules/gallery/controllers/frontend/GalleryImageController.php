@@ -1,15 +1,14 @@
 <?php
 
-namespace app\modules\gallery\controllers\backend;
+namespace app\modules\gallery\controllers\frontend;
 
 use Yii;
 use app\modules\gallery\common\models\GalleryImage;
-use app\modules\gallery\common\models\User;
 use app\modules\gallery\common\models\GalleryImageSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
+use yii\helpers\Json;
 
 /**
  * GalleryImageController implements the CRUD actions for GalleryImage model.
@@ -37,12 +36,11 @@ class GalleryImageController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new GalleryImageSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $images = GalleryImage::find()->all();
+        $images = Json::encode($images);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'images' => $images,
         ]);
     }
 
@@ -66,27 +64,14 @@ class GalleryImageController extends Controller
     public function actionCreate()
     {
         $model = new GalleryImage();
-        $model->scenario = 'create';
 
-        $model->load(Yii::$app->request->post());
-        
-        if(Yii::$app->request->isPost){
-            $model->upload_image = UploadedFile::getInstance($model, 'upload_image');
-            if ($model->validate()) {
-                $model->uploadImage();
-                $model->save(false);
-
-                $model->addTags(Yii::$app->request->post('tags'));
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
-
-        $className = $this->module->userClass;
-        $users = User::getAllUsers();
-        return $this->render('create', [
-            'model' => $model,
-            'users' => $users,
-        ]);
     }
 
     /**
@@ -98,37 +83,14 @@ class GalleryImageController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $oldModel = clone $model;
 
-        $model->load(Yii::$app->request->post());
-
-        $galleryFolderName = $this->module->folder;
-        $subFolderName = 'user' . $model->user_id;
-        $folderPath = "/{$galleryFolderName}/{$subFolderName}/";
-
-        if(Yii::$app->request->isPost){
-            $model->upload_image = UploadedFile::getInstance($model, 'upload_image');
-            if ($model->validate()) {
-
-                $model->uploadImage();
-                $model->save(false);
-
-                if ($oldModel->path != $model->path) {
-                    $oldModel->deleteImagePhysically();
-                }                
-
-                $model->addTags(Yii::$app->request->post('tags'));
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
         }
-        $className = $this->module->userClass;
-        $users = User::getAllUsers();
-        $tags = $model->getTagsForWidget();
-        return $this->render('update', [
-            'model' => $model,
-            'users' => $users,
-            'tags' => $tags,            
-        ]);
     }
 
     /**

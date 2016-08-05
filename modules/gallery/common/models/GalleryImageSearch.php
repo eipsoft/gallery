@@ -1,14 +1,14 @@
 <?php
 
-namespace app\modules\gallery\models;
+namespace app\modules\gallery\common\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\gallery\models\GalleryImage;
+use app\modules\gallery\common\models\GalleryImage;
 
 /**
- * GalleryImageSearch represents the model behind the search form about `app\modules\gallery\models\GalleryImage`.
+ * GalleryImageSearch represents the model behind the search form about `app\modules\gallery\common\models\GalleryImage`.
  */
 class GalleryImageSearch extends GalleryImage
 {

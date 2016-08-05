@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\gallery\models;
+namespace app\modules\gallery\common\models;
 
 use Yii;
-use app\modules\gallery\models\GalleryTag;
+use app\modules\gallery\common\models\GalleryTag;
 use app\modules\gallery\libraries\UploadHandler;
 use yii\helpers\Html;
 

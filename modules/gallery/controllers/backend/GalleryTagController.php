@@ -3,8 +3,8 @@
 namespace app\modules\gallery\controllers\backend;
 
 use Yii;
-use app\modules\gallery\models\GalleryTag;
-use app\modules\gallery\models\GalleryTagSearch;
+use app\modules\gallery\common\models\GalleryTag;
+use app\modules\gallery\common\models\GalleryTagSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

@@ -3,8 +3,8 @@
 namespace app\modules\gallery\controllers\backend;
 
 use Yii;
-use app\modules\gallery\models\GalleryRating;
-use app\modules\gallery\models\GalleryRatingSearch;
+use app\modules\gallery\common\models\GalleryRating;
+use app\modules\gallery\common\models\GalleryRatingSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
