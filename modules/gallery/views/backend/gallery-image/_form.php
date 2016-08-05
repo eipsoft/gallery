@@ -39,7 +39,7 @@ AdminAsset::register($this);
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'user_id')->dropDownList($users) ?>
+    <?= $form->field($model, 'user_id')->dropDownList($users, ['prompt'=>'Without owner']) ?>
 
     <?php
         echo SelectizeTextInput::widget([

@@ -36,8 +36,22 @@ class GalleryImageController extends Controller
      */
     public function actionIndex()
     {
-        $images = GalleryImage::find()->all();
-        $images = Json::encode($images);
+        $imagesModels = GalleryImage::find()->all();
+        $images = [];
+        foreach ($imagesModels as $imageModel) {
+            $images[] = [
+                'id' => $imageModel->id,
+                'lowsrc' => $imageModel->thumbnail,
+                'fullsrc' => $imageModel->path,
+                'description' => $imageModel->description,
+                'category' => implode(',', array_map(function($tag) {
+                    return $tag->name;
+                }, $imageModel->tags)),
+                'timestamp' => $imageModel->created_date,
+                'rating' => $imageModel->averageRating,
+            ];
+        }
+        $images = Json::encode($images, JSON_PRETTY_PRINT);
 
         return $this->render('index', [
             'images' => $images,

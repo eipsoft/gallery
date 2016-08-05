@@ -6,6 +6,8 @@ use Yii;
 use app\modules\gallery\common\models\GalleryTag;
 use app\modules\gallery\libraries\UploadHandler;
 use yii\helpers\Html;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "gallery_image".
@@ -63,6 +65,23 @@ class GalleryImage extends \yii\db\ActiveRecord
             'created_date' => 'Created Date',
             'updated_date' => 'Updated Date',
             'author' => 'Author',
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_date', 'updated_date'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_date',
+                ],
+                'value' => function() { return date('U'); },
+            ],
         ];
     }
 

@@ -78,10 +78,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]);
                 },
                 'filter' => false,
+                'contentOptions'=>[ 'style'=>'min-width: 200px'], 
             ],
 
             [
                 'class' => 'yii\grid\ActionColumn',
+                'contentOptions' => ['style' => 'white-space: nowrap; text-align: center; letter-spacing: 0.1em; max-width: 7em;'],
                 //'template' => '{update}{delete}'
             ],
         ],

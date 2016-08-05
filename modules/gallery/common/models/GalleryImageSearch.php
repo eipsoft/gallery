@@ -70,7 +70,8 @@ class GalleryImageSearch extends GalleryImage
                 ],
                 'created_date',
                 //'averageRating'
-            ]
+            ],
+            'defaultOrder' => ['id' => SORT_DESC],
         ]);
 
         $this->load($params);
@@ -93,7 +94,11 @@ class GalleryImageSearch extends GalleryImage
             ->andFilterWhere(['like', 'description', $this->description]);
 
         $query->joinWith(['author' => function ($q) use($tableName, $userName) {
-            $q->where('LOWER(' . $tableName . '.' . $userName . ') LIKE "%' . strtolower($this->authorName) . '%"');
+            $condition = 'LOWER(' . $tableName . '.' . $userName . ') LIKE "%' . strtolower($this->authorName) . '%"';
+            if (empty($this->authorName)) {
+                $condition .= 'OR ' . $tableName . '.' . $userName . ' IS NULL';
+            }
+            $q->where($condition);
         }]);
 
         return $dataProvider;
