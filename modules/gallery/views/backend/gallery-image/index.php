@@ -7,6 +7,7 @@ use app\modules\gallery\assets\FullsizibleAsset;
 use app\modules\gallery\assets\AdminAsset;
 use app\modules\gallery\widgets\backend\StarRatingAjax;
 use himiklab\thumbnail\EasyThumbnailImage;
+use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\gallery\common\models\GalleryImageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -64,6 +65,16 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'created_date',
+                'filter' => DatePicker::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'date_from',
+                    'attribute2' => 'date_to',
+                    'type' => DatePicker::TYPE_RANGE,
+                    'separator' => '-',
+                    'pluginOptions' => ['format' => 'yyyy-mm-dd']
+                ]),
+                'format' => 'datetime',
+                //'value' => "date('yyyy-mm-dd H:i:s', $data->created_date)"
                 //'filterType' => GridView::FILTER_DATE,
             ],
             [

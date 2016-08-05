@@ -30,12 +30,12 @@ class Module extends \yii\base\Module
     /**
      * @var integer
      */
-    public $thumbnailWidth = 200;
+    public $thumbnailWidth = 300;
 
     /**
      * @var string name of directory in @webroot for images
      */
-    public $thumbnailHeight = 200;
+    public $thumbnailHeight = 300;
 
     /**
      * @inheritdoc

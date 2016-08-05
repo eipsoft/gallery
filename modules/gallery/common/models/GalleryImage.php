@@ -156,6 +156,8 @@ class GalleryImage extends \yii\db\ActiveRecord
     public function uploadImage()
     {
         $galleryFolderName = \app\modules\gallery\Module::getInstance()->folder;
+        $thumbnailWidth = \app\modules\gallery\Module::getInstance()->thumbnailWidth;
+        $thumbnailHeight = \app\modules\gallery\Module::getInstance()->thumbnailHeight;
         $subFolderName = 'user' . $this->user_id;
         $folderPath = "/{$galleryFolderName}/{$subFolderName}/";
 
@@ -167,7 +169,17 @@ class GalleryImage extends \yii\db\ActiveRecord
         $uploadHandler = new UploadHandler([
             'upload_dir' => $uploadDir,
             'upload_url' => $uploadUrl,
-            'param_name' => $paramName
+            'param_name' => $paramName,
+            'image_versions' => [
+                '' => [
+                    'auto_orient' => true
+                ],
+                'thumbnail' => [
+                    'crop' => true,
+                    'max_width' => $thumbnailWidth,
+                    'max_height' => $thumbnailHeight
+                ]
+            ]
         ]);
         $uploadHandlerResponse = ob_get_contents();
         ob_end_clean();

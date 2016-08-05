@@ -17,6 +17,14 @@ class GalleryImageSearch extends GalleryImage
      */
     public $authorName;
     /**
+     * @var date date from for search
+     */
+    public $date_from;
+    /**
+     * @var date date to for search
+     */
+    public $date_to;
+    /**
      * @inheritdoc
      */
     public function rules()
@@ -25,6 +33,7 @@ class GalleryImageSearch extends GalleryImage
             [['id', 'user_id'], 'integer'],
             [['authorName'], 'safe'],
             [['path', 'description', 'created_date', 'updated_date'], 'safe'],
+            [['date_from', 'date_to'], 'date', 'format' => 'php:Y-m-d'],
         ];
     }
 

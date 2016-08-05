@@ -36,6 +36,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
+        ['label' => 'Public - Images', 'url' => ['/gallery/gallery-image']],
             ['label' => 'Admin - Ratings', 'url' => ['/admin/gallery/gallery-rating']],
             ['label' => 'Admin - Images', 'url' => ['/admin/gallery/gallery-image']],
             ['label' => 'Admin - Tags', 'url' => ['/admin/gallery/gallery-tag']],
