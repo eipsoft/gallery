@@ -18,6 +18,7 @@ use yii\db\ActiveRecord;
  * @property integer $user_id
  * @property string $created_date
  * @property string $updated_date
+ * @property double $average_rating
  *
  * @property GalleryImageTag[] $galleryImageTags
  * @property GalleryRating[] $galleryRatings
@@ -65,6 +66,7 @@ class GalleryImage extends \yii\db\ActiveRecord
             'created_date' => 'Created Date',
             'updated_date' => 'Updated Date',
             'author' => 'Author',
+            'average_rating' => 'Average Rating',
         ];
     }
 
@@ -194,11 +196,11 @@ class GalleryImage extends \yii\db\ActiveRecord
     }
 
     /**
-     * get averate rating from all users
+     * calculates average rating from all users
      * 
      * @return double
      */
-    public function getAverageRating() {
+    public function calculateAverageRating() {
         $avRating = 0;
         if (!empty($this->galleryRatings)) {
             foreach ($this->galleryRatings as $rating) {

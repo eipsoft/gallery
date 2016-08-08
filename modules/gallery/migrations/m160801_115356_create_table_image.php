@@ -16,6 +16,7 @@ class m160801_115356_create_table_image extends Migration
             'path' => 'text NOT NULL DEFAULT ""',
             'description' => 'text NOT NULL DEFAULT ""',
             'user_id' => 'integer',
+            'average_rating' => 'double DEFAULT 0',
             'created_date' => 'timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP',
             'updated_date' => 'timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP'
         ], $tableOptions);

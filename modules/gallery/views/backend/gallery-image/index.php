@@ -78,11 +78,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 //'filterType' => GridView::FILTER_DATE,
             ],
             [
-                'attribute' => 'averageRating',
+                'attribute' => 'average_rating',
                 'format' => 'raw',
                 'value' => function($data){
                     return StarRatingAjax::widget([
-                        'value' => $data->averageRating,
+                        'value' => $data->average_rating,
                         'showClear' => false,
                         'readOnly' => true,
                         'disabled' => true

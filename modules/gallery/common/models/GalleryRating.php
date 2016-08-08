@@ -49,6 +49,28 @@ class GalleryRating extends \yii\db\ActiveRecord
         ];
     }
 
+    public function afterDelete()
+    {
+        parent::afterDelete();
+        //set new average rating for image
+        if ($this->image) {
+            $avRating = $this->image->calculateAverageRating();
+            $this->image->average_rating = $avRating;
+            $this->image->save();
+        }        
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        //set new average rating for image
+        if ($this->image) {
+            $avRating = $this->image->calculateAverageRating();
+            $this->image->average_rating = $avRating;
+            $this->image->save();
+        }        
+    }
+
     /**
      * Set or update rating value
      * @param integer $user_id
@@ -68,7 +90,6 @@ class GalleryRating extends \yii\db\ActiveRecord
         }
         $rating->value = $value;
         $rating->save();
-        print_r($rating->errors);
     }
 
     /**

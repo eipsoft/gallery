@@ -78,7 +78,7 @@ class GalleryImageSearch extends GalleryImage
                     'label' => 'Author'
                 ],
                 'created_date',
-                //'averageRating'
+                'average_rating'
             ],
             'defaultOrder' => ['id' => SORT_DESC],
         ]);
@@ -93,11 +93,13 @@ class GalleryImageSearch extends GalleryImage
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'user_id' => $this->user_id,
-            'created_date' => $this->created_date,
-            'updated_date' => $this->updated_date,
-        ]);
+            GalleryImage::tableName() . '.id' => $this->id,
+            GalleryImage::tableName() . '.user_id' => $this->user_id,
+            //'created_date' => $this->created_date,
+            //'updated_date' => $this->updated_date,
+        ])
+        ->andFilterWhere(['>=', 'created_date', $this->date_from ? strtotime($this->date_from . ' 00:00:00') : null])
+        ->andFilterWhere(['<=', 'created_date', $this->date_to ? strtotime($this->date_to . ' 23:59:59') : null]);
 
         $query->andFilterWhere(['like', 'path', $this->path])
             ->andFilterWhere(['like', 'description', $this->description]);

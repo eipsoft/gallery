@@ -48,7 +48,7 @@ class GalleryImageController extends Controller
                     return $tag->name;
                 }, $imageModel->tags)),
                 'timestamp' => $imageModel->created_date,
-                'rating' => $imageModel->averageRating,
+                'rating' => $imageModel->average_rating,
             ];
         }
         $images = Json::encode($images, JSON_PRETTY_PRINT);
