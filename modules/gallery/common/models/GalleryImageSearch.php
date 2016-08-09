@@ -70,7 +70,6 @@ class GalleryImageSearch extends GalleryImage
         $dataProvider->setSort([
             'attributes' => [
                 'id',
-                'path',
                 'description',
                 'authorName' => [
                     'asc' => [$tableName . '.' . $userName => SORT_ASC],
@@ -92,17 +91,12 @@ class GalleryImageSearch extends GalleryImage
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            GalleryImage::tableName() . '.id' => $this->id,
-            GalleryImage::tableName() . '.user_id' => $this->user_id,
-            //'created_date' => $this->created_date,
-            //'updated_date' => $this->updated_date,
-        ])
-        ->andFilterWhere(['>=', 'created_date', $this->date_from ? strtotime($this->date_from . ' 00:00:00') : null])
+        $query->andFilterWhere(['>=', 'created_date', $this->date_from ? strtotime($this->date_from . ' 00:00:00') : null])
         ->andFilterWhere(['<=', 'created_date', $this->date_to ? strtotime($this->date_to . ' 23:59:59') : null]);
 
-        $query->andFilterWhere(['like', 'path', $this->path])
-            ->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', GalleryImage::tableName() . '.path', $this->path])
+            ->andFilterWhere(['like', GalleryImage::tableName() . '.description', $this->description])
+            ->andFilterWhere(['like', GalleryImage::tableName() . '.id', $this->id]);
 
         $query->joinWith(['author' => function ($q) use($tableName, $userName) {
             $condition = 'LOWER(' . $tableName . '.' . $userName . ') LIKE "%' . strtolower($this->authorName) . '%"';
