@@ -13,7 +13,7 @@ use kartik\date\DatePicker;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 FullsizibleAsset::register($this);
 AdminAsset::register($this);
-$this->title = 'Gallery Images';
+$this->title = Yii::t('gallery', 'Галерея');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -22,10 +22,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-<?php Pjax::begin(); ?>    
+<?php 
+    $updateBtn = Html::a('<i class="glyphicon glyphicon-repeat"></i> ' . Yii::t('gallery', 'Обновить'), ['index'], ['class' => 'btn btn-info']);
+ ?>
+
 <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'pjax' => true,
+        'pjaxSettings' => [
+            'neverTimeout' => true,
+            'options' => [
+                'id' => 'gallery-pjax-id',
+            ]
+        ], 
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -49,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 //'attribute' => 'path',
                 'format' => 'raw',
-                'label' => 'Tags',
+                'label' => Yii::t('gallery', 'Теги'),
                 'value' => function($data){
                     $html = '';
                     $i = 0;
@@ -65,17 +75,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'created_date',
-                'filter' => DatePicker::widget([
-                    'model' => $searchModel,
-                    'attribute' => 'date_from',
-                    'attribute2' => 'date_to',
-                    'type' => DatePicker::TYPE_RANGE,
-                    'separator' => '-',
-                    'pluginOptions' => ['format' => 'yyyy-mm-dd']
-                ]),
-                'format' => 'datetime',
-                //'value' => "date('yyyy-mm-dd H:i:s', $data->created_date)"
-                //'filterType' => GridView::FILTER_DATE,
+                'filter' => false,
+                'value' => function($data){
+                    return date('Y-m-d H:i:s', $data->created_date);
+                }
             ],
             [
                 'attribute' => 'average_rating',
@@ -99,11 +102,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
         'panel' => [
-            'heading'=>'<i class="glyphicon glyphicon-globe"></i> ' . Html::encode($this->title),
-            'type'=>'success',
-            'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Create Gallery Image', ['create'], ['class' => 'btn btn-success']),
-            'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
-            //'footer'=>false
+            'heading' => '<i class="glyphicon glyphicon-globe"></i> ' . Html::encode($this->title),
+            'type' => 'success',
+            'before' => Html::a('<i class="glyphicon glyphicon-plus"></i> ' . Yii::t('gallery', 'Добавить изображение'), ['create'], ['class' => 'btn btn-success']) . '&nbsp;' . $updateBtn,
+            'after' => $updateBtn,
+            //'footer' => false
         ],
         'export' => false,
         'bordered' => true,
@@ -113,11 +116,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'hover' => true,
         'floatHeader' => true,
     ]); ?>
-<?php Pjax::end(); ?></div>
+</div>
 <script>
     jQuery(document).ready(function($) {
-        $('a.fullsizable').fullsizable({
-          detach_id: 'container'
+        initJqueryWidgets();
+        //$('#galleryimagesearch-created_date').val('')
+        $('#gallery-pjax-id').on('pjax:complete', function(event) {
+            initJqueryWidgets();
         });
     });
+
+    function initJqueryWidgets(isOnPjax) {
+        $('a.fullsizable').fullsizable({
+        });
+    }
 </script>
