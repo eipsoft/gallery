@@ -5,12 +5,12 @@ use yii\web\AssetBundle;
 
 class FullsizibleAsset extends AssetBundle
 {
-    public $sourcePath = '@bower/jquery-fullsizable';
+    public $sourcePath = '@app/modules/gallery/web';
     public $css = [
-        'css/jquery-fullsizable.css',
-        'css/jquery-fullsizable-theme.css',
+        'css/jquery-fullsizable/jquery-fullsizable.css',
+        'css/jquery-fullsizable/jquery-fullsizable-theme.css',
     ];
     public $js = [
-        'js/jquery-fullsizable.min.js',
+        'js/jquery-fullsizable/jquery-fullsizable.min.js',
     ];
 }
