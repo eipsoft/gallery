@@ -39,7 +39,7 @@ AdminAsset::register($this);
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'user_id')->dropDownList($users, ['prompt'=>'Without owner']) ?>
+    <?= $form->field($model, 'user_id')->dropDownList($users, ['prompt' => Yii::t('gallery', 'Без владельца')]) ?>
 
     <?php
         echo SelectizeTextInput::widget([
@@ -59,7 +59,7 @@ AdminAsset::register($this);
     ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('gallery', 'Создать') : Yii::t('gallery', 'Обновить'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

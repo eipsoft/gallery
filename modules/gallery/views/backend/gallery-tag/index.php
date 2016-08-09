@@ -7,15 +7,18 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\modules\gallery\common\models\GalleryTagSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Gallery Tags';
+$this->title = Yii::t('gallery', 'Теги');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="gallery-tag-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+<?php 
+    $updateBtn = Html::a('<i class="glyphicon glyphicon-repeat"></i> ' . Yii::t('gallery', 'Обновить'), ['index'], ['class' => 'btn btn-info']);
+ ?>
 
-<?php //Pjax::begin(); ?>    <?= GridView::widget([
+<?= GridView::widget([
         'id' => 'gallery-images-gridview', 
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -26,10 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'name',
                 //'pageSummary' => 'Page Total',
-                'vAlign'=>'middle',
-                'headerOptions'=>['class'=>'kv-sticky-column'],
-                'contentOptions'=>['class'=>'kv-sticky-column'],
-                'editableOptions'=>['header'=>'Name', 'size'=>'md']
+                'vAlign' => 'middle',
+                'header' => Yii::t('gallery', 'Изменить тег'),
+                'headerOptions' => ['class' => 'kv-sticky-column'],
+                'contentOptions' => ['class' => 'kv-sticky-column'],
+                'editableOptions' => ['header' => Yii::t('gallery', 'тег'), 'size' => 'md']
 
             ],
             //'name:ntext',
@@ -41,11 +45,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
         'panel' => [
-            'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-globe"></i> ' . Html::encode($this->title) . '</h3>',
-            'type'=>'success',
-            'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Create Gallery Tag', ['create'], ['class' => 'btn btn-success']),
-            'after'=>Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
-            //'footer'=>false
+            'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-globe"></i> ' . Html::encode($this->title) . '</h3>',
+            'type' => 'success',
+            'before' => Html::a('<i class="glyphicon glyphicon-plus"></i> ' . Yii::t('gallery', 'Добавить тег'), ['create'], ['class' => 'btn btn-success']) . '&nbsp;' . $updateBtn,
+            'after' => $updateBtn,
+            //'footer' => false
         ],
         'export' => false,
         'bordered' => true,
@@ -55,4 +59,4 @@ $this->params['breadcrumbs'][] = $this->title;
         'hover' => true,
         'floatHeader' => true,
     ]); ?>
-<?php //Pjax::end(); ?></div>
+</div>

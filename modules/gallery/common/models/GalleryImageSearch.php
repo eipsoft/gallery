@@ -74,7 +74,7 @@ class GalleryImageSearch extends GalleryImage
                 'authorName' => [
                     'asc' => [$tableName . '.' . $userName => SORT_ASC],
                     'desc' => [$tableName . '.' . $userName => SORT_DESC],
-                    'label' => 'Author'
+                    'label' => Yii::t('gallery', 'Владелец')
                 ],
                 'created_date',
                 'average_rating'

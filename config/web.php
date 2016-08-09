@@ -4,6 +4,7 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
+    'language'=>'ru-RU',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
@@ -68,13 +69,9 @@ $config = [
         ],
         'i18n' => [
             'translations' => [
-                '*' => [
+                'app' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/messages', // if advanced application, set @frontend/messages
-                    'sourceLanguage' => 'en',
-                    'fileMap' => [
-                        //'main' => 'main.php',
-                    ],
+                    'forceTranslation' => true,
                 ],
             ],
         ],

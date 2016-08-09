@@ -43,9 +43,10 @@ class GalleryRating extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'user_id' => 'User ID',
-            'image_id' => 'Image ID',
-            'value' => 'Value',
+            'user_id' => Yii::t('gallery', 'Пользователь'),
+            'image_id' => Yii::t('gallery', 'Изображение'),
+            'value' => Yii::t('gallery', 'Значение'),
+            'authorName' => Yii::t('gallery', 'Пользователь'),
         ];
     }
 

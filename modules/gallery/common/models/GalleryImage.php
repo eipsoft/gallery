@@ -60,13 +60,15 @@ class GalleryImage extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'path' => 'Path',
-            'description' => 'Description',
-            'user_id' => 'User ID',
-            'created_date' => 'Created Date',
-            'updated_date' => 'Updated Date',
-            'author' => 'Author',
-            'average_rating' => 'Average Rating',
+            'path' => Yii::t('gallery', 'Изображение'),
+            'description' => Yii::t('gallery', 'Описание'),
+            'user_id' => Yii::t('gallery', 'Пользователь'),
+            'authorName' => Yii::t('gallery', 'Пользователь'),
+            'created_date' => Yii::t('gallery', 'Дата создания'),
+            'updated_date' => Yii::t('gallery', 'Дата обновления'),
+            'upload_image' => Yii::t('gallery', 'Изображение'),
+            'author' => Yii::t('gallery', 'Пользователь'),
+            'average_rating' => Yii::t('gallery', 'Рейтинг'),
         ];
     }
 

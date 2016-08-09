@@ -9,27 +9,17 @@ use yii\helpers\Url;
 /* @var $searchModel app\modules\gallery\common\models\GalleryRatingSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app/modules/gallery/messages', 'Gallery Ratings');
+$this->title = Yii::t('gallery', 'Рейтинги');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="gallery-rating-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php 
-        // echo StarRating::widget([
-        //     'name' => 'rating_1',
-        //     'pluginOptions' => [
-        //         'size' => 'xs',
-        //         'step' => 0.1,
-        //         'showCaption' => false
-        //     ]
-        // ]);
-     ?>
-
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'pjax' => true,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -67,4 +57,4 @@ $this->params['breadcrumbs'][] = $this->title;
         'hover' => true,
         'floatHeader' => true,
     ]); ?>
-<?php Pjax::end(); ?></div>
+</div>

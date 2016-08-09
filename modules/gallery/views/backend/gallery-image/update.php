@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\gallery\common\models\GalleryImage */
 
-$this->title = 'Update Gallery Image: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Gallery Images', 'url' => ['index']];
+$this->title = Yii::t('gallery', 'Обновить изображение') . ' #' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gallery', 'Галерея'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = Yii::t('gallery', 'Обновление');
 ?>
 <div class="gallery-image-update">
 

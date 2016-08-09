@@ -30,17 +30,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     'persist' => false,
                     'delimeter' => GalleryTag::DELIMITER,                    
                     'create' => 'function(input) {
-                                    return {
-                                        value: input,
-                                        text: input
-                                    }
-                                }'
+                        return {
+                            value: input,
+                            text: input
+                        }
+                    }'
                 ],
             ]);
         ?>
 
         <div class="form-group">
-            <?= Html::submitButton('Add new tags', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton(Yii::t('gallery', 'Добавить тег'), ['class' => 'btn btn-success']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

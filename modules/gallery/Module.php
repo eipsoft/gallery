@@ -50,5 +50,15 @@ class Module extends \yii\base\Module
                 'class' => '\kartik\grid\Module',
             ], 
         ];
+
+        \Yii::$app->i18n->translations['gallery'] = [
+            'class' => 'yii\i18n\PhpMessageSource',
+            'sourceLanguage' => 'en-US',
+            'forceTranslation' => true,
+            'basePath' => '@app/modules/gallery/messages',
+            'fileMap' => [
+                'gallery' => 'module.php',
+            ],
+        ];
     }
 }

@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\gallery\common\models\GalleryImage */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Gallery Images', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gallery', 'Галерея'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('gallery', 'Изменить'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('gallery', 'Удалить'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => Yii::t('gallery', 'Вы уверены, что хотите удалить это изображение?'),
                 'method' => 'post',
             ],
         ]) ?>
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'authorName',
             [
                 //'attribute' => 'path',
-                'label' => 'Tags',
+                'label' => Yii::t('gallery', 'Теги'),
                 'value' => call_user_func(function($data){
                     $html = '';
                     $i = 0;

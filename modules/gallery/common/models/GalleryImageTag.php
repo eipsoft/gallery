@@ -41,8 +41,8 @@ class GalleryImageTag extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'image_id' => 'Image ID',
-            'tag_id' => 'Tag ID',
+            'image_id' => Yii::t('gallery', 'Изображение'),
+            'tag_id' => Yii::t('gallery', 'Тег'),
         ];
     }
 
