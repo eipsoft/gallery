@@ -48,7 +48,7 @@ class Module extends \yii\base\Module
         $this->modules = [
            'gridview' => [
                 'class' => '\kartik\grid\Module',
-            ], 
+            ],
         ];
 
         \Yii::$app->i18n->translations['gallery'] = [

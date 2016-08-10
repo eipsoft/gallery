@@ -65,7 +65,7 @@ class GalleryTagController extends Controller
                     }
                 }
 
-               
+
             }
             // return ajax json encoded response and exit
             echo $out;

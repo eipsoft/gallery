@@ -22,7 +22,7 @@ AdminAsset::register($this);
         'options' => ['enctype'=>'multipart/form-data']
     ]); ?>
 
-    <?= 
+    <?=
         $form->field($model, 'upload_image')->widget(FileInput::classname(), [
             'options' => ['accept' => 'image/*'],
             'pluginOptions' => [
@@ -34,7 +34,7 @@ AdminAsset::register($this);
                 'overwriteInitial'=>true,
                 'showUpload' => false,
             ]
-        ]); 
+        ]);
     ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>

@@ -69,7 +69,7 @@ class GalleryImageController extends Controller
         $model->scenario = 'create';
 
         $model->load(Yii::$app->request->post());
-        
+
         if(Yii::$app->request->isPost){
             $model->upload_image = UploadedFile::getInstance($model, 'upload_image');
             if ($model->validate()) {
@@ -115,7 +115,7 @@ class GalleryImageController extends Controller
 
                 if ($oldModel->path != $model->path) {
                     $oldModel->deleteImagePhysically();
-                }                
+                }
 
                 $model->addTags(Yii::$app->request->post('tags'));
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -127,7 +127,7 @@ class GalleryImageController extends Controller
         return $this->render('update', [
             'model' => $model,
             'users' => $users,
-            'tags' => $tags,            
+            'tags' => $tags,
         ]);
     }
 

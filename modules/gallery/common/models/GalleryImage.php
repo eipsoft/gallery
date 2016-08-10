@@ -29,7 +29,7 @@ class GalleryImage extends \yii\db\ActiveRecord
      * @var UploadedFile
      */
     public $upload_image;
-    
+
     /**
      * @inheritdoc
      */
@@ -100,7 +100,7 @@ class GalleryImage extends \yii\db\ActiveRecord
 
     /**
      * add tags to image
-     * 
+     *
      * @param string $tags string with tags, separated by GalleryTag::DELIMITER
      * @return void
      */
@@ -129,7 +129,7 @@ class GalleryImage extends \yii\db\ActiveRecord
 
     /**
      * delete image and all its thumbnails from file system
-     * 
+     *
      * @return void
      */
     public function deleteImagePhysically()
@@ -143,7 +143,7 @@ class GalleryImage extends \yii\db\ActiveRecord
     }
 
     /**
-     * 
+     *
      * @return string thumbnail of the image or empty string if not exists
      */
     public function getThumbnail()
@@ -153,8 +153,8 @@ class GalleryImage extends \yii\db\ActiveRecord
     }
 
     /**
-     * Upload image with helping of UploadHandler and set path 
-     * 
+     * Upload image with helping of UploadHandler and set path
+     *
      * @return void
      */
     public function uploadImage()
@@ -199,7 +199,7 @@ class GalleryImage extends \yii\db\ActiveRecord
 
     /**
      * calculates average rating from all users
-     * 
+     *
      * @return double
      */
     public function calculateAverageRating() {
@@ -215,7 +215,7 @@ class GalleryImage extends \yii\db\ActiveRecord
 
     /**
      * return tags of current image model
-     * 
+     *
      * @return string tags of current image, separated by GalleryTag::DELIMITER
      */
     public function getTagsForWidget()
@@ -227,7 +227,7 @@ class GalleryImage extends \yii\db\ActiveRecord
 
     /**
      * return username of user who added image
-     * 
+     *
      * @return string username - creator of the image
      */
     public function getAuthorName() {
@@ -258,6 +258,6 @@ class GalleryImage extends \yii\db\ActiveRecord
     public function getAuthor()
     {
         $userClass = \app\modules\gallery\Module::getInstance()->userClass;
-        return $this->hasOne($userClass, ['id' => 'user_id']);        
+        return $this->hasOne($userClass, ['id' => 'user_id']);
     }
 }

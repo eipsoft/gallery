@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-<?php 
+<?php
     $updateBtn = Html::a('<i class="glyphicon glyphicon-repeat"></i> ' . Yii::t('gallery', 'Обновить'), ['index'], ['class' => 'btn btn-info']);
  ?>
 
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'options' => [
                 'id' => 'gallery-pjax-id',
             ]
-        ], 
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function($data){
                     return Html::a(
-                        Html::img($data->thumbnail), 
+                        Html::img($data->thumbnail),
                         $data->path,
                         [
                             'class' => 'fullsizable'
@@ -92,7 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]);
                 },
                 'filter' => false,
-                'contentOptions'=>[ 'style'=>'min-width: 200px'], 
+                'contentOptions'=>[ 'style'=>'min-width: 200px'],
             ],
 
             [

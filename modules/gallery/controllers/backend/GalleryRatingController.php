@@ -54,9 +54,9 @@ class GalleryRatingController extends Controller
             $user_id = Yii::$app->request->post('user_id');
             $image_id = Yii::$app->request->post('image_id');
             $value = Yii::$app->request->post('value');
-            GalleryRating::setRating($user_id, $image_id, $value);            
+            GalleryRating::setRating($user_id, $image_id, $value);
         }
-        return '';       
+        return '';
     }
 
     /**

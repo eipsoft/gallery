@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     $html = '';
                     $i = 0;
                     foreach ($data->tags as $tag) {
-                        $html .= '<span class="label label-success">' . $tag->name . '</span>&nbsp;';                        
+                        $html .= '<span class="label label-success">' . $tag->name . '</span>&nbsp;';
                     }
                     return $html;
                 }, $model),

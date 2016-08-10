@@ -7,7 +7,7 @@ class User extends \yii\base\Object
 {
     /**
      * get list of all users in system
-     * 
+     *
      * @return array [userId] => userName
      */
     public static function getAllUsers()

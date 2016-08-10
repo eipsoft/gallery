@@ -14,12 +14,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-<?php 
+<?php
     $updateBtn = Html::a('<i class="glyphicon glyphicon-repeat"></i> ' . Yii::t('gallery', 'Обновить'), ['index'], ['class' => 'btn btn-info']);
  ?>
 
 <?= GridView::widget([
-        'id' => 'gallery-images-gridview', 
+        'id' => 'gallery-images-gridview',
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'pjax' => true,

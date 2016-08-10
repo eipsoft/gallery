@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'clientOptions' => [
                     'plugins' => ['remove_button'],
                     'persist' => false,
-                    'delimeter' => GalleryTag::DELIMITER,                    
+                    'delimeter' => GalleryTag::DELIMITER,
                     'create' => 'function(input) {
                         return {
                             value: input,

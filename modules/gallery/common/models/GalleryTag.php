@@ -47,7 +47,7 @@ class GalleryTag extends \yii\db\ActiveRecord
 
     /**
      * get list of all tags in system
-     * 
+     *
      * @return array [['name' => tagName], ...]
      */
     public static function getAllTags()
@@ -71,7 +71,7 @@ class GalleryTag extends \yii\db\ActiveRecord
 
     /**
      * add new tags to the gallery
-     * 
+     *
      * @param string $tags string with tags, separated by GalleryTag::DELIMITER
      * @return void
      */

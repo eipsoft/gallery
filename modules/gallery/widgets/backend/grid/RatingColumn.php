@@ -45,7 +45,7 @@ class RatingColumn extends DataColumn
     /**
      * names of model fields, wich'll be sent with ajax
      * For example, with ['id'] data for ajax will be <code>{'id' => <?= $model->id ?>}</code>
-     * 
+     *
      * @var array names of model fields
      */
     public $ajaxKeys = [];

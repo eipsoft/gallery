@@ -58,7 +58,7 @@ class GalleryRating extends \yii\db\ActiveRecord
             $avRating = $this->image->calculateAverageRating();
             $this->image->average_rating = $avRating;
             $this->image->save();
-        }        
+        }
     }
 
     public function afterSave($insert, $changedAttributes)
@@ -69,7 +69,7 @@ class GalleryRating extends \yii\db\ActiveRecord
             $avRating = $this->image->calculateAverageRating();
             $this->image->average_rating = $avRating;
             $this->image->save();
-        }        
+        }
     }
 
     /**
@@ -112,7 +112,7 @@ class GalleryRating extends \yii\db\ActiveRecord
 
     /**
      * return username of user who added rating
-     * 
+     *
      * @return string username - creator of the rating
      */
     public function getAuthorName() {

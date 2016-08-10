@@ -9,7 +9,7 @@ use yii\base\Widget;
 /**
  * StarRating widget with additional options
  * for ajax updating
- * 
+ *
  * @author Sergey Semenov <redencill@gmail.com>
  */
 class StarRatingAjax extends Widget
@@ -67,7 +67,7 @@ class StarRatingAjax extends Widget
     /**
      * names of model fields, wich'll be sent with ajax
      * For example, with ['id'] data for ajax will be <code>{'id' => <?= $model->id ?>}</code>
-     * 
+     *
      * @var array names of model fields
      */
     public $ajaxKeys = [];
@@ -82,8 +82,8 @@ class StarRatingAjax extends Widget
             'size' => $this->size,
             'step' => $this->step,
             'showCaption' => $this->showCaption,
-            'showClear' => $this->showClear, 
-            'readOnly' => $this->readOnly, 
+            'showClear' => $this->showClear,
+            'readOnly' => $this->readOnly,
         ];
         if ($this->isCanChangeWithAjax) {
             foreach ($this->ajaxKeys as $ajaxKey) {
@@ -95,7 +95,7 @@ class StarRatingAjax extends Widget
             }
             $ajaxData = json_encode($ajaxData);
             $widgetOptions['pluginEvents'] = [
-                "rating.change" => "function(event, value) { 
+                "rating.change" => "function(event, value) {
                     var ajaxData = " . $ajaxData . ";
                     ajaxData['value'] = value;
                     $.ajax({
@@ -105,7 +105,7 @@ class StarRatingAjax extends Widget
                         data: ajaxData
                     });
                 }",
-                "rating.clear" => "function(event, value) { 
+                "rating.clear" => "function(event, value) {
                     var ajaxData = " . $ajaxData . ";
                     ajaxData['value'] = 0;
                     $.ajax({
