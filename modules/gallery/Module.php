@@ -2,10 +2,12 @@
 
 namespace app\modules\gallery;
 
+use yii\base\BootstrapInterface;
+
 /**
  * gallery module definition class
  */
-class Module extends \yii\base\Module
+class Module extends \yii\base\Module implements BootstrapInterface
 {
     /**
      * @inheritdoc
@@ -60,5 +62,12 @@ class Module extends \yii\base\Module
                 'gallery' => 'module.php',
             ],
         ];
+    }
+
+    public function bootstrap($app)
+    {
+        if ($app instanceof \yii\console\Application) {
+            $this->controllerNamespace = 'app\modules\gallery\commands';
+        }
     }
 }

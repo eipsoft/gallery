@@ -32,8 +32,19 @@ $config = [
                 '<_c:[\w\-]+>/<_a:[\w\-]+>/<id:\d+>' => '<_c>/<_a>',
             ],
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
     ],
     'params' => $params,
+    'bootstrap' => [
+        'gallery'
+    ],
+    'modules' => [
+        'gallery' => [
+            'class' => 'app\modules\gallery\Module',
+        ],
+    ],
     /*
     'controllerMap' => [
         'fixture' => [ // Fixture generation command line.
