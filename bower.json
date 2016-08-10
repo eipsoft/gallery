@@ -1,6 +1,0 @@
-{
-    "name": "eipdev/gallery",
-    "dependencies": {
-        "jquery-fullsizable": "*"
-    }
-}
