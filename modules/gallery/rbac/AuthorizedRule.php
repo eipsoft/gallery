@@ -5,11 +5,11 @@ namespace app\modules\gallery\rbac;
 use yii\rbac\Rule;
 
 /**
- * Check authorID for compliance with user, transmitted via parameters
+ * Check is user authrized
  */
-class AuthorRule extends Rule
+class AuthorizedRule extends Rule
 {
-    public $name = 'isAuthor';
+    public $name = 'isAuthorized';
 
     /**
      * @param string|integer $user the user ID.
@@ -19,15 +19,6 @@ class AuthorRule extends Rule
      */
     public function execute($user, $item, $params)
     {
-        if (isset($params['image'])) {
-            if (isset($params['image']->user_id)) {
-                return $params['image']->user_id == $user;
-            }
-            if ($params['image']['user_id']) {
-                return $params['image']['user_id'] == $user;
-            }
-        }
-
-        return false;
+        return !\Yii::$app->user->isGuest;
     }
 }

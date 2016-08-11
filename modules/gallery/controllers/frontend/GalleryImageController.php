@@ -48,10 +48,11 @@ class GalleryImageController extends Controller
                     return $tag->name;
                 }, $imageModel->tags)),
                 'timestamp' => $imageModel->created_date,
+                'user_id' => $imageModel->user_id,
                 'rating' => $imageModel->average_rating,
             ];
         }
-        $images = Json::encode($images, JSON_PRETTY_PRINT);
+        //$images = Json::encode($images, JSON_PRETTY_PRINT);
 
         return $this->render('index', [
             'images' => $images,

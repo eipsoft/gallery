@@ -3,6 +3,8 @@
 namespace app\modules\gallery;
 
 use yii\base\BootstrapInterface;
+use app\modules\gallery\rbac\Rbac as GalleryRbac;
+use yii\filters\AccessControl;
 
 /**
  * gallery module definition class
@@ -69,5 +71,15 @@ class Module extends \yii\base\Module implements BootstrapInterface
         if ($app instanceof \yii\console\Application) {
             $this->controllerNamespace = 'app\modules\gallery\commands';
         }
+    }
+
+    public function behaviors()
+    {
+        return [
+            'backendAccess' => [
+                'class' => 'app\modules\gallery\filters\BackendFilter',
+                'permissions' => [GalleryRbac::PERMISSION_ADMIN_PANEL]
+            ],
+        ];
     }
 }
