@@ -22,6 +22,7 @@ class m160801_115356_create_table_image extends Migration
         ], $tableOptions);
 
         $this->createIndex('idx-gallery_image-user_id', 'gallery_image', 'user_id');
+        //$this->addForeignKey('fk-gallery_image-user_id', 'gallery_image', 'user_id', 'user', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function safeDown()
