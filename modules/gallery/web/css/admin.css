@@ -6,3 +6,7 @@
 #jquery-fullsizable {
     z-index: 3000 !important;
 }
+
+.kv-thead-float {
+    overflow: visible !important;
+}

@@ -25,13 +25,17 @@ class GalleryImageSearch extends GalleryImage
      */
     public $date_to;
     /**
+     * @var string tags
+     */
+    public $tags_search;
+    /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
             [['id', 'user_id'], 'integer'],
-            [['authorName'], 'safe'],
+            [['authorName', 'tags_search'], 'safe'],
             [['path', 'description', 'created_date', 'updated_date'], 'safe'],
             [['date_from', 'date_to'], 'date', 'format' => 'php:Y-m-d'],
         ];
@@ -88,6 +92,32 @@ class GalleryImageSearch extends GalleryImage
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
+        }
+
+        if (!empty($this->tags_search)) {
+            $tags = explode(GalleryTag::DELIMITER, $this->tags_search);
+            $subquery = GalleryTag::find();
+            foreach ($tags as $tag) {
+                $subquery->orFilterWhere(['name' => $tag]);
+            }
+            $tagIds = [];
+            $res = $subquery->all();
+            foreach ($res as $_res) {
+                $tagIds[] = $_res->id;
+            }
+            $imageIds = [];
+            if (!empty($tagIds)) {
+                $connection = Yii::$app->getDb();
+                $command = $connection->createCommand('
+                    SELECT image_id FROM gallery_image_tag WHERE tag_id IN (' . implode(',', $tagIds) . ') GROUP BY image_id HAVING COUNT(*) = ' . count($tagIds));
+                $result = $command->queryAll();
+                foreach ($result as $_res) {
+                    $imageIds[] = $_res['image_id'];
+                }
+                if (!empty($imageIds)) {
+                    $query->andFilterWhere([GalleryImage::tableName() . '.id' => $imageIds]);
+                }
+            }
         }
 
         // grid filtering conditions
