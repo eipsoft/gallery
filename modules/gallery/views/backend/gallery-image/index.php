@@ -2,16 +2,11 @@
 
 use yii\helpers\Html;
 use kartik\grid\GridView;
-use yii\widgets\Pjax;
 use app\modules\gallery\assets\FullsizibleAsset;
 use app\modules\gallery\assets\TagAsset;
 use app\modules\gallery\assets\AdminAsset;
 use app\modules\gallery\widgets\backend\StarRatingAjax;
-use himiklab\thumbnail\EasyThumbnailImage;
-use kartik\date\DatePicker;
 use app\modules\gallery\common\models\GalleryTag;
-use dosamigos\selectize\SelectizeTextInput;
-use yii\web\JsExpression;
 use yii\helpers\Json;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\gallery\common\models\GalleryImageSearch */
@@ -78,25 +73,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                         return $html;
                     },
-                    // 'filter' => SelectizeTextInput::widget([
-                    //     'name' => 'GalleryImageSearch[tags_search]',
-                    //     'value' => $searchModel->tags_search,
-                    //     'clientOptions' => [
-                    //         'plugins' => ['remove_button'],
-                    //         'persist' => false,
-                    //         'delimeter' => GalleryTag::DELIMITER,
-                    //         'valueField' => 'name',
-                    //         'labelField' => 'name',
-                    //         'searchField' => ['name'],
-                    //         'options' => GalleryTag::getAllTags(),
-                    //         'onChange' => new JsExpression("
-                    //             function (value) {
-                    //                 alert(value)
-                    //             }
-                    //         "),
-
-                    //     ],
-                    // ]),
                 ],
                 [
                     'attribute' => 'created_date',
