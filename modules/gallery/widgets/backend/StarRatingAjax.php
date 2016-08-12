@@ -76,6 +76,7 @@ class StarRatingAjax extends Widget
     {
         $widgetOptions = [];
         $widgetOptions['name'] = 'star_rating';
+        $widgetOptions['id'] = 'star_rating_' . uniqid();
         $widgetOptions['value'] = $this->value;
         $widgetOptions['disabled'] = $this->disabled;
         $widgetOptions['pluginOptions'] = [
