@@ -22,6 +22,10 @@ class RbacController extends Controller
         $addPhoto->description = GalleryRbac::DESCRIPTION_ADD_PHOTO;
         $auth->add($addPhoto);
 
+        $setRating = $auth->createPermission(GalleryRbac::PERMISSION_SET_RATING);
+        $setRating->description = GalleryRbac::DESCRIPTION_SET_RATING;
+        $auth->add($setRating);
+
         $authorRule = new \app\modules\gallery\rbac\AuthorRule;
         $auth->add($authorRule);
 
@@ -37,6 +41,7 @@ class RbacController extends Controller
         $user->ruleName = $authorizedRule->name;
         $auth->add($user);
         $auth->addChild($user, $addPhoto);
+        $auth->addChild($user, $setRating);
         $auth->addChild($user, $editOwnPhoto);
 
         $adminPanelAccess = $auth->createPermission(GalleryRbac::PERMISSION_ADMIN_PANEL);
