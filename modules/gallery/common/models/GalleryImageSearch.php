@@ -105,7 +105,7 @@ class GalleryImageSearch extends GalleryImage
             foreach ($res as $_res) {
                 $tagIds[] = $_res->id;
             }
-            $imageIds = [];
+            $imageIds = [ -1 ];
             if (!empty($tagIds)) {
                 $connection = Yii::$app->getDb();
                 $command = $connection->createCommand('
@@ -114,9 +114,8 @@ class GalleryImageSearch extends GalleryImage
                 foreach ($result as $_res) {
                     $imageIds[] = $_res['image_id'];
                 }
-                if (!empty($imageIds)) {
-                    $query->andFilterWhere([GalleryImage::tableName() . '.id' => $imageIds]);
-                }
+
+               $query->andFilterWhere([GalleryImage::tableName() . '.id' => $imageIds]);
             }
         }
 

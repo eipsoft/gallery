@@ -10,3 +10,7 @@
 .kv-thead-float {
     overflow: visible !important;
 }
+
+a.tag_link:hover {
+    text-decoration: none;
+}

@@ -40,9 +40,6 @@ AppAsset::register($this);
             ['label' => 'Admin - Ratings', 'url' => ['/admin/gallery/gallery-rating']],
             ['label' => 'Admin - Images', 'url' => ['/admin/gallery/gallery-image']],
             ['label' => 'Admin - Tags', 'url' => ['/admin/gallery/gallery-tag']],
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/user/login']]
             ) : (

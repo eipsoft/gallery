@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "14c2884d0d00c90a03c8e3ad196f541d",
-    "content-hash": "dac123e808aa7e5e7365275a0d18a58b",
+    "hash": "08c618eb3c9e38796c53319ad8d1d979",
+    "content-hash": "61fde9cea2262c8e52a1f1dc21d4b4fe",
     "packages": [
         {
             "name": "2amigos/yii2-selectize-widget",
@@ -540,16 +540,16 @@
         },
         {
             "name": "dektrium/yii2-user",
-            "version": "0.9.7",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dektrium/yii2-user.git",
-                "reference": "7193e56bd2c53af0868f998e93febe409aa1a0e9"
+                "reference": "d9530a1b4213c2bd7fd8eb05d185dfe9dffde558"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dektrium/yii2-user/zipball/7193e56bd2c53af0868f998e93febe409aa1a0e9",
-                "reference": "7193e56bd2c53af0868f998e93febe409aa1a0e9",
+                "url": "https://api.github.com/repos/dektrium/yii2-user/zipball/d9530a1b4213c2bd7fd8eb05d185dfe9dffde558",
+                "reference": "d9530a1b4213c2bd7fd8eb05d185dfe9dffde558",
                 "shasum": ""
             },
             "require": {
@@ -559,17 +559,16 @@
                 "yiisoft/yii2-swiftmailer": "^2.0.0"
             },
             "require-dev": {
-                "codeception/aspect-mock": "*",
-                "codeception/specify": "*",
-                "codeception/verify": "*",
+                "codeception/specify": "^0.4.3",
+                "codeception/verify": "^0.3.1",
                 "yiisoft/yii2-codeception": "^2.0.0"
             },
             "type": "yii2-extension",
             "extra": {
                 "bootstrap": "dektrium\\user\\Bootstrap",
-                "asset-installer-paths": {
-                    "npm-asset-library": "vendor/npm",
-                    "bower-asset-library": "vendor/bower"
+                "branch-alias": {
+                    "dev-master": "0.9.x-dev",
+                    "dev-develop": "1.0.x-dev"
                 }
             },
             "autoload": {
@@ -595,7 +594,7 @@
                 "yii2",
                 "yii2-user"
             ],
-            "time": "2016-08-08 21:36:20"
+            "time": "2016-08-13 15:45:38"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -998,12 +997,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-grid.git",
-                "reference": "756555d4d28e59d331e9f89dc2ccc7fc02fd95d2"
+                "reference": "6373e72c8747d64e9df53b4d03a76c7069f37431"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/756555d4d28e59d331e9f89dc2ccc7fc02fd95d2",
-                "reference": "756555d4d28e59d331e9f89dc2ccc7fc02fd95d2",
+                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/6373e72c8747d64e9df53b4d03a76c7069f37431",
+                "reference": "6373e72c8747d64e9df53b4d03a76c7069f37431",
                 "shasum": ""
             },
             "require": {
@@ -1040,7 +1039,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-08-04 11:44:57"
+            "time": "2016-08-09 13:17:33"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
@@ -1195,16 +1194,16 @@
         },
         {
             "name": "kartik-v/yii2-widget-datepicker",
-            "version": "v1.4.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-datepicker.git",
-                "reference": "b76e08a432950d658cadc7597178426a47a994ac"
+                "reference": "e589d2463b2a3077e07364b48a2eb7dc399ec49b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-datepicker/zipball/b76e08a432950d658cadc7597178426a47a994ac",
-                "reference": "b76e08a432950d658cadc7597178426a47a994ac",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-datepicker/zipball/e589d2463b2a3077e07364b48a2eb7dc399ec49b",
+                "reference": "e589d2463b2a3077e07364b48a2eb7dc399ec49b",
                 "shasum": ""
             },
             "require": {
@@ -1245,7 +1244,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-06-28 17:51:26"
+            "time": "2016-07-23 15:29:51"
         },
         {
             "name": "kartik-v/yii2-widget-fileinput",
@@ -2260,7 +2259,8 @@
         "kartik-v/yii2-krajee-base": 20,
         "kartik-v/yii2-mpdf": 20,
         "kartik-v/yii2-widget-fileinput": 20,
-        "kartik-v/yii2-editable": 20
+        "kartik-v/yii2-editable": 20,
+        "kartik-v/yii2-widget-datepicker": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

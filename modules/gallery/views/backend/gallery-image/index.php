@@ -11,6 +11,7 @@ use yii\helpers\Json;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\gallery\common\models\GalleryImageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+
 FullsizibleAsset::register($this);
 AdminAsset::register($this);
 TagAsset::register($this);
@@ -66,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         $html = '';
                         $i = 0;
                         foreach ($data->tags as $tag) {
-                            $html .= '<span class="label label-success">' . $tag->name . '</span>&nbsp;';
+                            $html .= Html::a('<span class="label label-success">' . $tag->name . '</span>&nbsp;', ['index', 'GalleryImageSearch[tags_search]' => $tag->name], ['class' => 'tag_link']);
                             if (++$i % 3 == 0) {
                                 $html .= '<br /><br />';
                             }
@@ -76,6 +77,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'attribute' => 'created_date',
+                    // 'filter' => DatePicker::widget([
+                    //     'model' => $searchModel,
+                    //     'attribute' => 'date_from',
+                    //     'attribute2' => 'date_to',
+                    //     'type' => DatePicker::TYPE_RANGE,
+                    //     'separator' => '-',
+                    //     'pluginOptions' => ['format' => 'yyyy-mm-dd']
+                    // ]),
                     'filter' => false,
                     'value' => function($data){
                         return date('Y-m-d H:i:s', $data->created_date);
@@ -119,10 +128,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ]); ?>
         </div>
 </div>
+
 <script>
     jQuery(document).ready(function($) {
         initJqueryWidgets();
-        //$('#galleryimagesearch-created_date').val('')
         $('#gallery-pjax-id').on('pjax:complete', function(event) {
             initJqueryWidgets();
         });
