@@ -8,7 +8,6 @@ use app\modules\gallery\common\models\GalleryImageSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\Json;
 
 /**
  * GalleryImageController implements the CRUD actions for GalleryImage model.

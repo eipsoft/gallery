@@ -13,4 +13,7 @@ class FullsizibleAsset extends AssetBundle
     public $js = [
         'js/jquery-fullsizable/jquery-fullsizable.min.js',
     ];
+    public $depends = [
+        'yii\web\JqueryAsset',
+    ];
 }
