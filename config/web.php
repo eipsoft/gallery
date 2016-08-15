@@ -43,25 +43,6 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                [
-                    'class' => 'yii\web\GroupUrlRule',
-                    'prefix' => 'admin',
-                    'routePrefix' => 'admin',
-                    'rules' => [
-                        '' => 'galleryImage/index',
-                        '<_m:[\w\-]+>' => '<_m>/galleryImage/index',
-                        '<_m:[\w\-]+>/<id:\d+>' => '<_m>/default/view',
-                        '<_m:[\w\-]+>/<id:\d+>/<_a:[\w-]+>' => '<_m>/default/<_a>',
-                        '<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>' => '<_m>/<_c>/view',
-                        '<_m:[\w\-]+>/<_c:[\w\-]+>/<id:\d+>/<_a:[\w\-]+>' => '<_m>/<_c>/<_a>',
-                        '<_m:[\w\-]+>/<_c:[\w\-]+>' => '<_m>/<_c>/index',
-                    ],
-                ],
-                '<gallery>' => 'gallery/default/index',
-                'gallery/<_c:[\w\-]+>' => 'gallery/<_c>/index',
-                'gallery/<_c:[\w\-]+>/<id:\d+>' => 'gallery/<_c>/view',
-                'gallery/<_c:[\w\-]+>/<_a:[\w\-]+>/<id:\d+>' => 'gallery/<_c>/<_a>',
-
                 '<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',
                 '<_c:[\w\-]+>' => '<_c>/index',
                 '<_c:[\w\-]+>/<_a:[\w\-]+>/<id:\d+>' => '<_c>/<_a>',
