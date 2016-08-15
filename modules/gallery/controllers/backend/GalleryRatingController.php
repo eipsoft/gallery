@@ -4,8 +4,10 @@ namespace app\modules\gallery\controllers\backend;
 
 use Yii;
 use app\modules\gallery\common\models\GalleryRating;
+use app\modules\gallery\common\models\GalleryImage;
 use app\modules\gallery\common\models\GalleryRatingSearch;
 use yii\web\Controller;
+use app\modules\gallery\common\models\User;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -41,6 +43,39 @@ class GalleryRatingController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Creates a new GalleryRating model.
+     * If creation is successful, the browser will be redirected to the 'index' page.
+     * @param integer $image_id
+     * @return mixed
+     * @throws NotFoundHttpException if the image cannot be found
+     */
+    public function actionCreate($image_id)
+    {
+        $model = new GalleryRating();
+        $image = GalleryImage::findOne($image_id);
+        if (!$image) {
+            throw new NotFoundHttpException(Yii::t('gallery', 'Изображение не найдено'));
+        }
+
+        $model->load(Yii::$app->request->post());
+
+        if(Yii::$app->request->isPost){
+            if (GalleryRating::setRating($model->user_id, $model->image_id, $model->value)) {
+                return $this->redirect('index');
+            }
+        }
+
+        $users = User::getAllUsers();
+
+        $model->image_id = $image->id;
+        return $this->render('create', [
+            'model' => $model,
+            'users' => $users,
+            'image' => $image,
         ]);
     }
 

@@ -77,7 +77,7 @@ class GalleryRating extends \yii\db\ActiveRecord
      * @param integer $user_id
      * @param integer $image_id
      * @param double $value rating value
-     * @return void
+     * @return boolean
      */
     public static function setRating($user_id, $image_id, $value)
     {
@@ -90,7 +90,7 @@ class GalleryRating extends \yii\db\ActiveRecord
             $rating->image_id = $image_id;
         }
         $rating->value = $value;
-        $rating->save();
+        return $rating->save();
     }
 
     /**

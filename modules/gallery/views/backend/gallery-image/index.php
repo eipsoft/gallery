@@ -107,8 +107,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 [
                     'class' => 'yii\grid\ActionColumn',
+                    'buttons' => [
+                        'add_rating' => function ($url, $model) {
+                            $customurl = Yii::$app->urlManager->createUrl(['/admin/gallery/gallery-rating/create', 'image_id' => $model->id]);
+                            return Html::a( '<span class="glyphicon glyphicon-star"></span>', $customurl,
+                                ['title' => Yii::t('gallery', 'Добавить оценку пользователя'), 'data-pjax' => '0']);
+                        }
+                    ],
                     'contentOptions' => ['style' => 'white-space: nowrap; text-align: center; letter-spacing: 0.1em; max-width: 7em;'],
-                    //'template' => '{update}{delete}'
+                    'template' => '{view}{update}{add_rating}{delete}'
                 ],
             ],
             'panel' => [

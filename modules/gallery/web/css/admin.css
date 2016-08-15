@@ -14,3 +14,7 @@
 a.tag_link:hover {
     text-decoration: none;
 }
+
+.gallery-rating-thumbnail-image {
+    margin-bottom: 10px;
+}

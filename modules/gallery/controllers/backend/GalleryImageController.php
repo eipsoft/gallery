@@ -81,7 +81,6 @@ class GalleryImageController extends Controller
             }
         }
 
-        $className = $this->module->userClass;
         $users = User::getAllUsers();
         return $this->render('create', [
             'model' => $model,
@@ -121,7 +120,7 @@ class GalleryImageController extends Controller
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
-        $className = $this->module->userClass;
+
         $users = User::getAllUsers();
         $tags = $model->getTagsForWidget();
         return $this->render('update', [
