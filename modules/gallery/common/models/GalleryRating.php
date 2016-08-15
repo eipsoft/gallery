@@ -3,6 +3,7 @@
 namespace app\modules\gallery\common\models;
 
 use Yii;
+use app\modules\gallery\Module as GalleryModule;
 
 /**
  * This is the model class for table "gallery_rating".
@@ -106,7 +107,7 @@ class GalleryRating extends \yii\db\ActiveRecord
      */
     public function getAuthor()
     {
-        $userClass = \app\modules\gallery\Module::getInstance()->userClass;
+        $userClass = GalleryModule::getInstance()->userClass;
         return $this->hasOne($userClass, ['id' => 'user_id']);
     }
 
@@ -116,7 +117,7 @@ class GalleryRating extends \yii\db\ActiveRecord
      * @return string username - creator of the rating
      */
     public function getAuthorName() {
-        $userName = \app\modules\gallery\Module::getInstance()->userName;
+        $userName = GalleryModule::getInstance()->userName;
         return $this->author ? $this->author->{$userName} : '';
     }
 }

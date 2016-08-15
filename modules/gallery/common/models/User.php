@@ -2,6 +2,7 @@
 namespace app\modules\gallery\common\models;
 
 use yii\helpers\ArrayHelper;
+use app\modules\gallery\Module as GalleryModule;
 
 class User extends \yii\base\Object
 {
@@ -12,7 +13,7 @@ class User extends \yii\base\Object
      */
     public static function getAllUsers()
     {
-        $module = \app\modules\gallery\Module::getInstance();
+        $module = GalleryModule::getInstance();
         $userClass = $module->userClass;
         $userName = $module->userName;
         $users = $userClass::find()

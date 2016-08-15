@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\modules\gallery\common\models\GalleryImage;
+use app\modules\gallery\Module as GalleryModule;
 
 /**
  * GalleryImageSearch represents the model behind the search form about `app\modules\gallery\common\models\GalleryImage`.
@@ -67,8 +68,8 @@ class GalleryImageSearch extends GalleryImage
             'query' => $query,
         ]);
 
-        $userClass = \app\modules\gallery\Module::getInstance()->userClass;
-        $userName = \app\modules\gallery\Module::getInstance()->userName;
+        $userClass = GalleryModule::getInstance()->userClass;
+        $userName = GalleryModule::getInstance()->userName;
         $tableName = $userClass::tableName();
 
         $dataProvider->setSort([
