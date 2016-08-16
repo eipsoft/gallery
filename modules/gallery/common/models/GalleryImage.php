@@ -8,6 +8,7 @@ use app\modules\gallery\libraries\UploadHandler;
 use yii\helpers\Html;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use app\modules\gallery\traits\ModuleTrait;
 use app\modules\gallery\Module as GalleryModule;
 
 /**
@@ -26,6 +27,7 @@ use app\modules\gallery\Module as GalleryModule;
  */
 class GalleryImage extends \yii\db\ActiveRecord
 {
+    use ModuleTrait;
     /**
      * @var UploadedFile
      */
@@ -160,9 +162,9 @@ class GalleryImage extends \yii\db\ActiveRecord
      */
     public function uploadImage()
     {
-        $galleryFolderName = GalleryModule::getInstance()->folder;
-        $thumbnailWidth = GalleryModule::getInstance()->thumbnailWidth;
-        $thumbnailHeight = GalleryModule::getInstance()->thumbnailHeight;
+        $galleryFolderName = $this->module->folder;
+        $thumbnailWidth = $this->module->thumbnailWidth;
+        $thumbnailHeight = $this->module->thumbnailHeight;
         $subFolderName = 'user' . $this->user_id;
         $folderPath = "/{$galleryFolderName}/{$subFolderName}/";
 
@@ -232,7 +234,7 @@ class GalleryImage extends \yii\db\ActiveRecord
      * @return string username - creator of the image
      */
     public function getAuthorName() {
-        $userName = GalleryModule::getInstance()->userName;
+        $userName = $this->module->userName;
         return $this->author ? $this->author->{$userName} : '';
     }
 
@@ -258,7 +260,7 @@ class GalleryImage extends \yii\db\ActiveRecord
      */
     public function getAuthor()
     {
-        $userClass = GalleryModule::getInstance()->userClass;
+        $userClass = $this->module->userClass;
         return $this->hasOne($userClass, ['id' => 'user_id']);
     }
 }

@@ -7,12 +7,14 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\modules\gallery\common\models\GalleryImage;
 use app\modules\gallery\Module as GalleryModule;
+use app\modules\gallery\traits\ModuleTrait;
 
 /**
  * GalleryImageSearch represents the model behind the search form about `app\modules\gallery\common\models\GalleryImage`.
  */
 class GalleryImageSearch extends GalleryImage
 {
+    use ModuleTrait;
     /**
      * @var string username for search
      */
@@ -68,8 +70,8 @@ class GalleryImageSearch extends GalleryImage
             'query' => $query,
         ]);
 
-        $userClass = GalleryModule::getInstance()->userClass;
-        $userName = GalleryModule::getInstance()->userName;
+        $userClass = $this->module->userClass;
+        $userName = $this->module->userName;
         $tableName = $userClass::tableName();
 
         $dataProvider->setSort([
