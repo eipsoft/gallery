@@ -7,6 +7,7 @@ use kartik\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('gallery', 'Теги');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gallery', 'Админка'), 'url' => ['/admin/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

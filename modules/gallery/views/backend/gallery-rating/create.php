@@ -7,7 +7,8 @@ use yii\helpers\Html;
 /* @var $model app\modules\gallery\common\models\GalleryRating */
 
 $this->title = Yii::t('gallery', 'Добавить оценку');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('gallery', 'Галерея'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gallery', 'Админка'), 'url' => ['/admin/default/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gallery', 'Рейтинги'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="gallery-rating-create">

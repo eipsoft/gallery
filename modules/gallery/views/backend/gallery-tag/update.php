@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\modules\gallery\common\models\GalleryTag */
 
 $this->title = Yii::t('gallery', 'Обновить тег') . ' #' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gallery', 'Админка'), 'url' => ['/admin/default/index']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gallery', 'Теги'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('gallery', 'Обновление');

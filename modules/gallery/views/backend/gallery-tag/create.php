@@ -11,8 +11,9 @@ TagAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model app\modules\gallery\common\models\GalleryTag */
 
-$this->title = 'Add tags';
-$this->params['breadcrumbs'][] = ['label' => 'Gallery Tags', 'url' => ['index']];
+$this->title = Yii::t('gallery', 'Добавить тег(и)');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gallery', 'Админка'), 'url' => ['/admin/default/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gallery', 'Теги'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="gallery-tag-create">

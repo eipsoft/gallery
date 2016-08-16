@@ -16,6 +16,7 @@ FullsizibleAsset::register($this);
 AdminAsset::register($this);
 TagAsset::register($this);
 $this->title = Yii::t('gallery', 'Галерея');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('gallery', 'Админка'), 'url' => ['/admin/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

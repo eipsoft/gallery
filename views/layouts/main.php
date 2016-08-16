@@ -28,19 +28,42 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'CMS',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-        ['label' => 'Public - Images', 'url' => ['/gallery/gallery-image']],
-            ['label' => 'Admin - Ratings', 'url' => ['/admin/gallery/gallery-rating']],
-            ['label' => 'Admin - Images', 'url' => ['/admin/gallery/gallery-image']],
-            ['label' => 'Admin - Tags', 'url' => ['/admin/gallery/gallery-tag']],
+            [
+                'label' => 'Галерея',
+                'items' => [
+                    [
+                        'label' => 'Фронтенд - Галерея', 
+                        'url' => ['/gallery/gallery-image'],
+                        'active' => (strpos($this->context->route, 'gallery/gallery-image') === 0)
+                    ],
+                    '<li class="divider"></li>',
+                    [
+                        'label' => 'Бэкенд - Рейтинги', 
+                        'url' => ['/admin/gallery/gallery-rating'],
+                        'active' => (strpos($this->context->route, 'admin/gallery/gallery-rating') !== false)
+                    ],
+                    [
+                        'label' => 'Бэкенд - Изображения', 
+                        'url' => ['/admin/gallery/gallery-image'],
+                        'active' => (strpos($this->context->route, 'admin/gallery/gallery-image') !== false)
+                    ],
+                    [
+                        'label' => 'Бэкенд - Теги', 
+                        'url' => ['/admin/gallery/gallery-tag'],
+                        'active' => (strpos($this->context->route, 'admin/gallery/gallery-tag') !== false)
+                    ],
+                ],
+            ],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/user/login']]
             ) : (
