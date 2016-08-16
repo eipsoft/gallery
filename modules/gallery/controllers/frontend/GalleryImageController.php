@@ -8,6 +8,7 @@ use app\modules\gallery\common\models\GalleryImageSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Html;
 
 /**
  * GalleryImageController implements the CRUD actions for GalleryImage model.
@@ -42,9 +43,9 @@ class GalleryImageController extends Controller
                 'id' => $imageModel->id,
                 'lowsrc' => $imageModel->thumbnail,
                 'fullsrc' => $imageModel->path,
-                'description' => $imageModel->description,
+                'description' => Html::encode($imageModel->description),
                 'category' => implode(',', array_map(function($tag) {
-                    return $tag->name;
+                    return Html::encode($tag->name);
                 }, $imageModel->tags)),
                 'timestamp' => $imageModel->created_date,
                 'user_id' => $imageModel->user_id,

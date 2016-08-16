@@ -64,6 +64,22 @@ AppAsset::register($this);
                     ],
                 ],
             ],
+            [
+                'label' => 'Блог',
+                'items' => [
+                    [
+                        'label' => 'Фронтенд - Блог', 
+                        //'url' => ['/gallery/gallery-image'],
+                        //'active' => (strpos($this->context->route, 'gallery/gallery-image') === 0)
+                    ],
+                    '<li class="divider"></li>',
+                    [
+                        'label' => 'Бэкенд - Блог', 
+                        //'url' => ['/admin/gallery/gallery-rating'],
+                        //'active' => (strpos($this->context->route, 'admin/gallery/gallery-rating') !== false)
+                    ],
+                ],
+            ],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/user/login']]
             ) : (

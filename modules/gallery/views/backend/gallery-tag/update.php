@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\gallery\common\models\GalleryTag */
 
-$this->title = Yii::t('gallery', 'Обновить тег') . ' #' . $model->name;
+$this->title = Yii::t('gallery', 'Обновить тег') . ' #' . Html::encode($model->name);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gallery', 'Админка'), 'url' => ['/admin/default/index']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('gallery', 'Теги'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => Html::encode($model->name), 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('gallery', 'Обновление');
 ?>
 <div class="gallery-tag-update">

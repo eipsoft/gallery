@@ -3,6 +3,7 @@
 namespace app\modules\gallery\common\models;
 
 use Yii;
+use yii\helpers\Html;
 use app\modules\gallery\common\models\GalleryImage;
 
 /**
@@ -56,6 +57,10 @@ class GalleryTag extends \yii\db\ActiveRecord
             ->select('name')
             ->asArray()
             ->all();
+
+        array_walk($tags, function(&$value, &$key) {
+            $value['name'] = Html::encode($value['name']);
+        });
 
         return $tags;
     }

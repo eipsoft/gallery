@@ -44,7 +44,7 @@ AdminAsset::register($this);
     <?php
         echo SelectizeTextInput::widget([
             'name' => 'tags',
-            'value' => isset($tags) ? $tags : '',
+            'value' => isset($tags) ? Html::encode($tags) : '',
             'clientOptions' => [
                 'plugins' => ['remove_button'],
                 'persist' => false,

@@ -235,7 +235,7 @@ class GalleryImage extends \yii\db\ActiveRecord
      */
     public function getAuthorName() {
         $userName = $this->module->userName;
-        return $this->author ? $this->author->{$userName} : '';
+        return $this->author ? Html::encode($this->author->{$userName}) : '';
     }
 
     /**

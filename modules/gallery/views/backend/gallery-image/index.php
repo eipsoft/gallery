@@ -72,7 +72,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         $html = '';
                         $i = 0;
                         foreach ($data->tags as $tag) {
-                            $html .= Html::a('<span class="label label-success">' . $tag->name . '</span>&nbsp;', ['index', 'GalleryImageSearch[tags_search]' => $tag->name], ['class' => 'tag_link']);
+                            $encodedName = Html::encode($tag->name);
+                            $html .= Html::a('<span class="label label-success">' . $encodedName . '</span>&nbsp;', ['index', 'GalleryImageSearch[tags_search]' => $encodedName], ['class' => 'tag_link']);
                             if (++$i % 3 == 0) {
                                 $html .= '<br /><br />';
                             }

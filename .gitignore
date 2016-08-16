@@ -33,3 +33,4 @@ phpunit.phar
 # local phpunit config
 /phpunit.xml
 web/gallery_images/
+modules/blog/
