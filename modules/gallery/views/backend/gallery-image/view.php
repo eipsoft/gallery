@@ -11,6 +11,11 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('gallery', 'Галерея')
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
+
+<?= $this->render('@app/modules/gallery/common/views/_alert', [
+    'module' => Yii::$app->getModule('gallery'),
+]) ?>
+
 <div class="gallery-image-view">
 
     <h1><?= Html::encode($this->title) ?></h1>

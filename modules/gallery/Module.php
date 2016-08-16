@@ -37,6 +37,11 @@ class Module extends \yii\base\Module implements BootstrapInterface
     public $thumbnailWidth = 300;
 
     /**
+     * @var boolean
+     */
+    public $enableFlashMessages = true;
+
+    /**
      * @var string name of directory in @webroot for images
      */
     public $thumbnailHeight = 300;

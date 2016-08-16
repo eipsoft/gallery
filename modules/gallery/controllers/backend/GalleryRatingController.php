@@ -65,6 +65,7 @@ class GalleryRatingController extends Controller
 
         if(Yii::$app->request->isPost){
             if (GalleryRating::setRating($model->user_id, $model->image_id, $model->value)) {
+                Yii::$app->session->setFlash('success', Yii::t('gallery', 'Оценка успешно добавлена'));
                 return $this->redirect('index');
             }
         }
@@ -104,6 +105,7 @@ class GalleryRatingController extends Controller
     {
         $this->findModel($id)->delete();
 
+        Yii::$app->session->setFlash('success', Yii::t('gallery', 'Оценка успешно удалена'));
         return $this->redirect(['index']);
     }
 

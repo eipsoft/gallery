@@ -20,6 +20,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
+<?= $this->render('@app/modules/gallery/common/views/_alert', [
+    'module' => Yii::$app->getModule('gallery'),
+]) ?>
+
 <div class="gallery-image-index">
 
     <h1><?= Html::encode($this->title) ?></h1>

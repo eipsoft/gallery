@@ -99,6 +99,7 @@ class GalleryTagController extends Controller
     {
         if (Yii::$app->request->post('tags')) {
             GalleryTag::addMultiTags(Yii::$app->request->post('tags'));
+            Yii::$app->session->setFlash('success', Yii::t('gallery', 'Тег(и) успешно добавлены'));
             return $this->redirect('index');
         } else {
             return $this->render('create');
@@ -134,6 +135,7 @@ class GalleryTagController extends Controller
     {
         $this->findModel($id)->delete();
 
+        Yii::$app->session->setFlash('success', Yii::t('gallery', 'Тег успешно удален'));
         return $this->redirect(['index']);
     }
 

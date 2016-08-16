@@ -11,6 +11,11 @@ use yii\helpers\Url;
 $this->title = Yii::t('gallery', 'Рейтинги');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<?= $this->render('@app/modules/gallery/common/views/_alert', [
+    'module' => Yii::$app->getModule('gallery'),
+]) ?>
+
 <div class="gallery-rating-index">
 
     <h1><?= Html::encode($this->title) ?></h1>

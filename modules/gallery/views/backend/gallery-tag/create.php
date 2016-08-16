@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
 
         <div class="form-group">
-            <?= Html::submitButton(Yii::t('gallery', 'Добавить тег'), ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton(Yii::t('gallery', 'Добавить тег(и)'), ['class' => 'btn btn-success']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

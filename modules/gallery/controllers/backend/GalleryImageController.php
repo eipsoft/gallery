@@ -77,6 +77,7 @@ class GalleryImageController extends Controller
                 $model->save(false);
 
                 $model->addTags(Yii::$app->request->post('tags'));
+                Yii::$app->session->setFlash('success', Yii::t('gallery', 'Изображение добавлено'));
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
@@ -117,6 +118,7 @@ class GalleryImageController extends Controller
                 }
 
                 $model->addTags(Yii::$app->request->post('tags'));
+                Yii::$app->session->setFlash('success', Yii::t('gallery', 'Информация об изображении обновлена'));
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
@@ -140,6 +142,7 @@ class GalleryImageController extends Controller
     {
         $this->findModel($id)->delete();
 
+        Yii::$app->session->setFlash('success', Yii::t('gallery', 'Изображение успешно удалено'));
         return $this->redirect(['index']);
     }
 

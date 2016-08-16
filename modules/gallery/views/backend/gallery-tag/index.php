@@ -9,6 +9,11 @@ use kartik\grid\GridView;
 $this->title = Yii::t('gallery', 'Теги');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<?= $this->render('@app/modules/gallery/common/views/_alert', [
+    'module' => Yii::$app->getModule('gallery'),
+]) ?>
+
 <div class="gallery-tag-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -39,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{update}{delete}',
+                'template' => '{delete}',
                 'contentOptions' => ['style' => 'white-space: nowrap; text-align: center; letter-spacing: 0.1em; max-width: 7em;'],
             ],
         ],
