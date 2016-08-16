@@ -1,4 +1,5 @@
 <?php
+
 namespace app\modules\gallery\common\models;
 
 use yii\helpers\ArrayHelper;

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "08c618eb3c9e38796c53319ad8d1d979",
-    "content-hash": "61fde9cea2262c8e52a1f1dc21d4b4fe",
+    "hash": "fe1f4f097621edbc1a751ab516d157bd",
+    "content-hash": "0f040a3e1e77660d8d93f8beeab81093",
     "packages": [
         {
             "name": "2amigos/yii2-selectize-widget",
@@ -1603,53 +1603,6 @@
                 "yii2"
             ],
             "time": "2016-07-11 13:36:42"
-        },
-        {
-            "name": "yiisoft/yii2-app-advanced",
-            "version": "2.0.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/yii2-app-advanced.git",
-                "reference": "fd3b27541b4af8dad7df4481c031e5cb6ff54671"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-app-advanced/zipball/fd3b27541b4af8dad7df4481c031e5cb6ff54671",
-                "reference": "fd3b27541b4af8dad7df4481c031e5cb6ff54671",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0",
-                "yiisoft/yii2": ">=2.0.6",
-                "yiisoft/yii2-bootstrap": "*",
-                "yiisoft/yii2-swiftmailer": "*"
-            },
-            "require-dev": {
-                "yiisoft/yii2-codeception": "*",
-                "yiisoft/yii2-debug": "*",
-                "yiisoft/yii2-faker": "*",
-                "yiisoft/yii2-gii": "*"
-            },
-            "type": "project",
-            "extra": {
-                "asset-installer-paths": {
-                    "npm-asset-library": "vendor/npm",
-                    "bower-asset-library": "vendor/bower"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Yii 2 Advanced Project Template",
-            "homepage": "http://www.yiiframework.com/",
-            "keywords": [
-                "advanced",
-                "framework",
-                "project template",
-                "yii2"
-            ],
-            "time": "2016-07-11 13:48:25"
         },
         {
             "name": "yiisoft/yii2-authclient",

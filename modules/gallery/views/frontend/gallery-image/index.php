@@ -62,5 +62,4 @@ $this->params['breadcrumbs'][] = $this->title;
             '.ig-grid', '.ig-control', data, 7
         );
     ", \yii\web\View::POS_READY);
-
 ?>

@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\admin;
+
 use app\modules\gallery\rbac\Rbac as GalleryRbac;
 use yii\filters\AccessControl;
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace app\modules\gallery\assets;
 
 use yii\web\AssetBundle;
